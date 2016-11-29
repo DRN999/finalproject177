@@ -8,3 +8,38 @@ var CANVAS_WIDTH = 1280;
 var currentOBJ = 0;
 var scene1 = new Scene();
 var PROGRAM;
+var PLAYER1 = 0;
+var PLAYER2 = 1;
+
+var Key = 
+{
+	pressed: {},
+
+	LEFT: 37,
+	UP: 38,
+	RIGHT: 39,
+	DOWN: 40,
+	w: 119,
+	a: 97,
+	s: 115,
+	d: 100,
+	W: 87,
+	A: 65,
+	S: 83,
+	D: 68,
+	
+	isDown: function(keyCode) 
+	{
+		return this.pressed[keyCode];
+	},
+	  
+	onKeydown: function(event) 
+	{
+		this.pressed[event.keyCode] = true;
+	},
+	  
+	onKeyup: function(event) 
+	{
+		delete this.pressed[event.keyCode];
+	}
+};

@@ -1,3 +1,4 @@
+
 function initInputMouse()
 {
 	canvas.oncontextmenu = function()
@@ -23,12 +24,12 @@ function initInputMouse()
 		xPos = xPos - CANVAS_WIDTH/2;
 		yPos = (yPos - CANVAS_HEIGHT/2)*-1;
 		scene1.objects[0].change_location(xPos, yPos);
-		drawStuff();
+		scene1.objects[0].updateVertices();
 	}// End onmousemove
 }
 
 function initInputKey()
 {
-	
-	
+	document.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
+	document.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
 }

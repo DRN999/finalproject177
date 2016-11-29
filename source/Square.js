@@ -1,6 +1,4 @@
 
-
-
 function Square(x, y, w, h)
 {
 	Shape.call(this, x, y);
@@ -47,15 +45,13 @@ Square.prototype.change_color = function(r, g, b)
 	]
 }
 
-Square.prototype.change_location = function(x,y)
+Square.prototype.updateVertices = function()
 {
-	this.locX = x;
-	this.locY = y;
 	this.vertices =
 	[
-		x - this.width/2, y + this.height/2, 0,
-		x - this.width/2, y - this.height/2, 0,
-		x + this.width/2, y + this.height/2, 0,
-		x + this.width/2, y - this.height/2, 0
+		this.locX - this.width/2, this.locY + this.height/2, 0,
+		this.locX - this.width/2, this.locY - this.height/2, 0,
+		this.locX + this.width/2, this.locY + this.height/2, 0,
+		this.locX + this.width/2, this.locY - this.height/2, 0
 	];
 }

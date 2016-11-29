@@ -1,3 +1,4 @@
+
 function main()
 {
 	
@@ -10,7 +11,23 @@ function main()
 	initTemp();
 	initInputMouse();
 	initInputKey();
-	drawStuff();
+	var tick = function()
+	{// animation tick
+		updateKeyInfo();
+		drawStuff();
+		requestAnimationFrame(tick, canvas);					
+	}// End tick()
+	tick();
+	
+}
+
+function updateKeyInfo()
+{
+	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[PLAYER2].shift_location(0, 10);
+	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[PLAYER2].shift_location(-10, 0);
+	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[PLAYER2].shift_location(0, -10);
+	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[PLAYER2].shift_location(10, 0);
+	scene1.objects[PLAYER2].updateVertices();
 }
 
 function initTemp()

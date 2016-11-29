@@ -1,5 +1,4 @@
 
-
 function Shape(x, y)
 {
 	this.locX = x;
@@ -20,3 +19,15 @@ Shape.prototype.set_pick_color = function(rgb)
 {// sets the picking color
 	this.pick_color = rgb/255;
 }// End set_pick_colors
+
+Shape.prototype.change_location = function(x,y)
+{
+	this.locX = x;
+	this.locY = y;
+}
+
+Shape.prototype.shift_location = function(x,y)
+{
+	this.locX += x;
+	this.locY += y;
+}
