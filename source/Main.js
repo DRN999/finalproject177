@@ -32,12 +32,12 @@ function updateKeyInfo()
 
 function initTemp()
 {
-	var lel = new Square(100, 100, 200, 200);
+	var lel = new Square(100, 100, 200, 100);
 	lel.set_pick_color(currentOBJ);
 	currentOBJ++;
 	scene1.addObject(lel);
 	
-	var lel1 = new Square(-100, -100, 200, 200);
+	var lel1 = new Square(-100, -100, 100, 200);
 	lel1.change_color(0, 0, 1);
 	lel1.set_pick_color(currentOBJ);
 	currentOBJ++;
