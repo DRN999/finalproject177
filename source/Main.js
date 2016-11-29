@@ -14,6 +14,7 @@ function main()
 	var tick = function()
 	{// animation tick
 		updateKeyInfo();
+		updateMouseInfo();
 		drawStuff();
 		requestAnimationFrame(tick, canvas);					
 	}// End tick()
@@ -28,6 +29,12 @@ function updateKeyInfo()
 	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, -10);
 	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(10, 0);
 	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
+}
+
+function updateMouseInfo()
+{
+	scene1.objects[ITEM_KEY.PLAYER1].change_character(Mouse.x, Mouse.y);
+	scene1.objects[ITEM_KEY.PLAYER1].updateVertices();
 }
 
 function initTemp()
@@ -52,17 +59,28 @@ function initTemp()
 	scene1.addObject(c);
 	
 	c = new Character(0, 0);
-	lel = new Square(0, 0, 100, 350);
-	c.addShape(lel);
-	lel = new Square(0, -200, 150, 75);
-	c.addShape(lel);
-	c.change_all_color(1, 0.5, 0);
-	lel = new Square(-25, 50, 50, 50);
-	lel.change_color(0, 0, 0);
-	c.addShape(lel);
+	var rand = Math.floor((Math.random() * 30) + 15);
+	for(var i = 0; i < rand; i++)
+	{
+		lel = new Square
+		(
+			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 45) + 0)), 
+			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 150) + 0)), 
+			10, 10
+		);
+		c.addShape(lel);
+	}
+	c.change_all_color(0, 0, 0);
 	scene1.addObject(c);
 	
-	
+	c = new Character(0, 0);
+	lel = new Square(0, 0, 100, 350);
+	lel.change_color(1, 0.5, 0);
+	c.addShape(lel);
+	lel = new Square(0, -200, 150, 75);
+	lel.change_color(1, 0.5, 0);
+	c.addShape(lel);
+	scene1.addObject(c);
 	
 }
 
