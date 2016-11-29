@@ -8,8 +8,8 @@ var CANVAS_WIDTH = 1280;
 var currentOBJ = 0;
 var scene1 = new Scene();
 var PROGRAM;
-var PLAYER1 = 0;
-var PLAYER2 = 1;
+var PLAYER1 = 1;
+var PLAYER2 = 0;
 
 var Key = 
 {

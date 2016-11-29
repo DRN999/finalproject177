@@ -32,19 +32,23 @@ function updateKeyInfo()
 
 function initTemp()
 {
-	var lel = new Square(100, 100, 200, 100);
-	lel.set_pick_color(currentOBJ);
-	currentOBJ++;
-	var c = new Character();
+	var lel = new Square(25, 50, 100, 25);
+	var c = new Character(-200, 0);
+	c.addShape(lel);
+	lel = new Square(0, 0, 100, 200);
 	c.addShape(lel);
 	scene1.addObject(c);
 	
-	var lel1 = new Square(-100, -100, 100, 200);
-	lel1.change_color(0, 0, 1);
-	lel1.set_pick_color(currentOBJ);
-	var c2 = new Character();
-	c2.addShape(lel1);
-	currentOBJ++;
+	lel = new Square(0, 50, 200, 35);
+	lel.change_color(0, 0, 1);
+	var c2 = new Character(200, 0);
+	c2.addShape(lel);
+	lel = new Square(75, 0, 50, 75);
+	lel.change_color(0, 0, 1);
+	c2.addShape(lel);
+	lel = new Square(0, -50, 200, 35);
+	lel.change_color(0, 0, 1);
+	c2.addShape(lel);
 	scene1.addObject(c2);
 }
 

@@ -45,13 +45,13 @@ Square.prototype.change_color = function(r, g, b)
 	]
 }
 
-Square.prototype.updateVertices = function()
+Square.prototype.updateVertices = function(x, y)
 {
 	this.vertices =
 	[
-		this.locX - this.width/2, this.locY + this.height/2, 0,
-		this.locX - this.width/2, this.locY - this.height/2, 0,
-		this.locX + this.width/2, this.locY + this.height/2, 0,
-		this.locX + this.width/2, this.locY - this.height/2, 0
+		x + this.locX - this.width/2, y + this.locY + this.height/2, 0,
+		x + this.locX - this.width/2, y + this.locY - this.height/2, 0,
+		x + this.locX + this.width/2, y + this.locY + this.height/2, 0,
+		x + this.locX + this.width/2, y + this.locY - this.height/2, 0
 	];
 }
