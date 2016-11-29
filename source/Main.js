@@ -7,9 +7,21 @@ function main()
 		console.log("failed to load context");
 		return -1;
 	}
+	initTemp();
 	initInput();
 	drawStuff();
 }
+
+function initTemp()
+{
+	var lel = new Square(100, 100, 200, 200);
+	lel.set_pick_color(currentOBJ);
+	currentOBJ++;
+	console.log(lel.pick_color);
+	console.log(lel.retX() + ", " + lel.retY());
+	scene1.addObject(lel);
+}
+
 
 function drawStuff()
 {//text function
@@ -40,16 +52,10 @@ function initVertexBuffers(gl)
 		console.log("failed to create buffer");
 		return -1;
 	}
-	
-	var lel = new Square(100, 100, 200, 200);
-	lel.set_pick_color(currentOBJ);
-	currentOBJ++;
-	console.log(lel.pick_color);
-	console.log(lel.retX() + ", " + lel.retY());
-						
-	f_vertices = new Float32Array(lel.vertices);
-	f_colors = new Float32Array(lel.colors);
-	u_indices = new Uint16Array(lel.indices);
+				
+	f_vertices = new Float32Array(scene1.objects[0].vertices);
+	f_colors = new Float32Array(scene1.objects[0].colors);
+	u_indices = new Uint16Array(scene1.objects[0].indices);
 	
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
