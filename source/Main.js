@@ -23,33 +23,47 @@ function main()
 
 function updateKeyInfo()
 {
-	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[PLAYER2].shift_character(0, 10);
-	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[PLAYER2].shift_character(-10, 0);
-	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[PLAYER2].shift_character(0, -10);
-	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[PLAYER2].shift_character(10, 0);
-	scene1.objects[PLAYER2].updateVertices();
+	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, 10);
+	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(-10, 0);
+	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, -10);
+	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(10, 0);
+	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
 }
 
 function initTemp()
 {
+	var c = new Character(-300, 0);
 	var lel = new Square(25, 50, 100, 25);
-	var c = new Character(-200, 0);
 	c.addShape(lel);
 	lel = new Square(0, 0, 100, 200);
 	c.addShape(lel);
+	lel = new Square(0, 100, 50, 25);
+	c.addShape(lel);
 	scene1.addObject(c);
 	
+	c = new Character(300, 0);
 	lel = new Square(0, 50, 200, 35);
-	lel.change_color(0, 0, 1);
-	var c2 = new Character(200, 0);
-	c2.addShape(lel);
+	c.addShape(lel);
 	lel = new Square(75, 0, 50, 75);
-	lel.change_color(0, 0, 1);
-	c2.addShape(lel);
+	c.addShape(lel);
 	lel = new Square(0, -50, 200, 35);
-	lel.change_color(0, 0, 1);
-	c2.addShape(lel);
-	scene1.addObject(c2);
+	c.addShape(lel);
+	c.change_all_color(0, 0, 1);
+	scene1.addObject(c);
+	
+	c = new Character(0, 0);
+	lel = new Square(0, 0, 100, 350);
+	c.addShape(lel);
+	lel = new Square(0, -200, 150, 75);
+	c.addShape(lel);
+	c.change_all_color(1, 0.5, 0);
+	lel = new Square(-25, 50, 50, 50);
+	lel.change_color(0, 0, 0);
+	c.addShape(lel);
+	scene1.addObject(c);
+	
+	
+	
 }
 
 

@@ -23,8 +23,8 @@ function initInputMouse()
 		var yPos = e.clientY - rect.top;
 		xPos = xPos - CANVAS_WIDTH/2;
 		yPos = (yPos - CANVAS_HEIGHT/2)*-1;
-		scene1.objects[PLAYER1].change_character(xPos, yPos);
-		scene1.objects[PLAYER1].updateVertices();
+		scene1.objects[ITEM_KEY.PLAYER1].change_character(xPos, yPos);
+		scene1.objects[ITEM_KEY.PLAYER1].updateVertices();
 	}// End onmousemove
 }
 
