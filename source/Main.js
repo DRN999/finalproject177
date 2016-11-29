@@ -47,7 +47,7 @@ function initTemp()
 	lel = new Square(0, 100, 50, 25);
 	c.addShape(lel);
 	scene1.addObject(c);
-	
+
 	c = new Character(300, 0);
 	lel = new Square(0, 50, 200, 35);
 	c.addShape(lel);
