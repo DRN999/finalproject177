@@ -50,3 +50,8 @@ Character.prototype.change_all_color = function(r,g,b,a)
 		this.shapes[i].change_color(r,g,b,a);
 	}
 }
+
+Character.prototype.remove = function(index)
+{
+	this.shapes.splice(index, 1);
+}

@@ -70,6 +70,11 @@ function updateMouseInfo()
 	{
 		checkSprayedHair();
 	}
+	if(Mouse.isDown(Mouse.RIGHT))
+	{
+		if(scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length == 0)
+			initHair(scene1.objects[ITEM_KEY.FOOTHAIR]);
+	}
 }// End updateMouseInfo
 
 function checkSprayedHair()
@@ -88,8 +93,7 @@ function checkSprayedHair()
 				checkY <= player.y_orig + player.shapes[2].locY + player.shapes[2].height/2 &&
 				checkY >= player.y_orig + player.shapes[2].locY - player.shapes[2].height/2
 			){
-				scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].change_color(1, 0.5, 0, 1);
-				scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].name = "no-hair";
+				scene1.objects[ITEM_KEY.FOOTHAIR].remove(j);
 			}
 		}
 	}
@@ -127,20 +131,8 @@ function initTemp()
 	c.change_all_color(0, 0, 1, 1);
 	scene1.addObject(c);
 	
-	c = new Character(0, 0);
-	var rand = Math.floor((Math.random() * 30) + 15);
-	for(var i = 0; i < rand; i++)
-	{
-		lel = new Square
-		(
-			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 45) + 0)), 
-			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 150) + 0)), 
-			10, 10
-		);
-		lel.name = "hair";
-		c.addShape(lel);
-	}
-	c.change_all_color(0, 0, 0, 1);
+	c = new Character(0,0);
+	initHair(c);
 	scene1.addObject(c);
 	
 	c = new Character(0, 0);
@@ -154,6 +146,24 @@ function initTemp()
 	
 }// End initTemp
 
+function initHair(c)
+{
+	
+	var rand = Math.floor((Math.random() * 30) + 15);
+	for(var i = 0; i < rand; i++)
+	{
+		var lel = new Square
+		(
+			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 45) + 0)), 
+			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 150) + 0)), 
+			10, 10
+		);
+		lel.name = "hair";
+		c.addShape(lel);
+	}
+	c.change_all_color(0, 0, 0, 1);
+	
+}
 
 function drawStuff()
 {//draws the shapes

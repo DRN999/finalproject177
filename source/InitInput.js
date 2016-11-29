@@ -73,6 +73,10 @@ function initInputMouse()
 	canvas.addEventListener('mousedown', function(event){Mouse.onMouseDown(event);}, false);
 	canvas.addEventListener('mouseup', function(event){Mouse.onMouseUp(event);}, false);
 	canvas.addEventListener('mousemove', function(event){Mouse.onMouseMove(event);}, false);
+	canvas.oncontextmenu = function()
+	{// prevents menu from appearing when rightclick is pressed
+		return false;
+	}// end canvas.oncontextmenu
 }
 
 function initInputKey()

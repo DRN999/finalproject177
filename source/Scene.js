@@ -31,3 +31,8 @@ Scene.prototype.objects = function()
 {
 	return this.objects;
 }
+
+Scene.prototype.remove = function(index)
+{
+	this.objects.splice(index, 1);
+}
