@@ -20,8 +20,3 @@ Shape.prototype.set_pick_color = function(rgb)
 {// sets the picking color
 	this.pick_color = rgb/255;
 }// End set_pick_colors
-
-Shape.prototype.draw = function(gl)
-{
-	
-}
