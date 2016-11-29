@@ -1,4 +1,4 @@
-function initInput()
+function initInputMouse()
 {
 	canvas.oncontextmenu = function()
 	{// prevents menu from appearing when rightclick is pressed
@@ -19,4 +19,10 @@ function initInput()
 	{// initialize mousemove
 	
 	}// End onmousemove
+}
+
+function initInputKey()
+{
+	
+	
 }

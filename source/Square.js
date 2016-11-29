@@ -36,3 +36,13 @@ Square.prototype.ret_Area = function()
 {
 	return this.width * this.height;
 }
+
+Square.prototype.change_color = function(r, g, b)
+{
+	this.colors = [
+		r, g, b,
+		r, g, b,
+		r, g, b,
+		r, g, b
+	]
+}

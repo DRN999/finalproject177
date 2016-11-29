@@ -8,7 +8,8 @@ function main()
 		return -1;
 	}
 	initTemp();
-	initInput();
+	initInputMouse();
+	initInputKey();
 	drawStuff();
 }
 
@@ -17,19 +18,26 @@ function initTemp()
 	var lel = new Square(100, 100, 200, 200);
 	lel.set_pick_color(currentOBJ);
 	currentOBJ++;
-	console.log(lel.pick_color);
-	console.log(lel.retX() + ", " + lel.retY());
 	scene1.addObject(lel);
+	
+	var lel1 = new Square(-100, -100, 200, 200);
+	lel1.change_color(0, 0, 1);
+	lel1.set_pick_color(currentOBJ);
+	currentOBJ++;
+	scene1.addObject(lel1);
 }
 
 
 function drawStuff()
 {//text function
-	var n = initVertexBuffers(gl);
-	gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
+	for(var i = 0; i < scene1.objects.length; i++)
+	{
+		var n = initVertexBuffers(gl, i);
+		gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
+	}
 }
 
-function initVertexBuffers(gl)
+function initVertexBuffers(gl, index)
 {// buffers the light objects
 	var f_vertices;
 	var f_colors;
@@ -53,9 +61,9 @@ function initVertexBuffers(gl)
 		return -1;
 	}
 				
-	f_vertices = new Float32Array(scene1.objects[0].vertices);
-	f_colors = new Float32Array(scene1.objects[0].colors);
-	u_indices = new Uint16Array(scene1.objects[0].indices);
+	f_vertices = new Float32Array(scene1.objects[index].vertices);
+	f_colors = new Float32Array(scene1.objects[index].colors);
+	u_indices = new Uint16Array(scene1.objects[index].indices);
 	
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
