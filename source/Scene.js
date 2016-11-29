@@ -6,7 +6,14 @@ function Scene(obj)
 		console.log("incorrect format");
 		return -1;
 	}
-	this.objects = obj;
+	else if(obj == null)
+	{
+		this.objects = new Array();
+	}
+	else
+	{
+		this.objects = obj;
+	}
 }
 
 Scene.prototype.addObject = function(obj)
