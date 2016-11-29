@@ -46,3 +46,16 @@ Square.prototype.change_color = function(r, g, b)
 		r, g, b
 	]
 }
+
+Square.prototype.change_location = function(x,y)
+{
+	this.locX = x;
+	this.locY = y;
+	this.vertices =
+	[
+		x - this.width/2, y + this.height/2, 0,
+		x - this.width/2, y - this.height/2, 0,
+		x + this.width/2, y + this.height/2, 0,
+		x + this.width/2, y - this.height/2, 0
+	];
+}

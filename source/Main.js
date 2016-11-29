@@ -30,6 +30,9 @@ function initTemp()
 
 function drawStuff()
 {//text function
+	gl.clearColor(1,1,1,1);
+	gl.enable(gl.DEPTH_TEST);
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	for(var i = 0; i < scene1.objects.length; i++)
 	{
 		var n = initVertexBuffers(gl, i);
