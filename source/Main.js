@@ -116,11 +116,13 @@ function initTemp()
 	c = new Character(300 * neg, 0);
 	lel = new Square(0, 50, 200, 35);
 	c.addShape(lel);
-	lel = new Square(75, 0, 50, 75);
+	lel = new Square(100, 0, 50, 75);
 	c.addShape(lel);
 	lel = new Square(0, 0, 200, 25);
 	c.addShape(lel);
 	lel = new Square(0, -50, 200, 35);
+	c.addShape(lel);
+	lel = new Square(-100, 0, 50, 75);
 	c.addShape(lel);
 	c.change_all_color(0, 0, 1, 1);
 	scene1.addObject(c);
