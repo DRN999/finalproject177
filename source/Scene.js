@@ -11,7 +11,7 @@ function Scene(obj)
 
 Scene.prototype.addObject = function(obj)
 {
-	if(!obj instanceof Shape)
+	if(!obj instanceof Character)
 	{
 		console.log("incorrect format: input is not instance of Object");
 		return -1;
@@ -19,7 +19,6 @@ Scene.prototype.addObject = function(obj)
 	this.objects.push(obj);
 	return 1;
 }
-
 
 Scene.prototype.objects = function()
 {

@@ -23,10 +23,10 @@ function main()
 
 function updateKeyInfo()
 {
-	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[PLAYER2].shift_location(0, 10);
-	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[PLAYER2].shift_location(-10, 0);
-	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[PLAYER2].shift_location(0, -10);
-	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[PLAYER2].shift_location(10, 0);
+	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[PLAYER2].shift_character(0, 10);
+	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[PLAYER2].shift_character(-10, 0);
+	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[PLAYER2].shift_character(0, -10);
+	if (Key.isDown(Key.d)||Key.isDown(Key.D)) scene1.objects[PLAYER2].shift_character(10, 0);
 	scene1.objects[PLAYER2].updateVertices();
 }
 
@@ -35,13 +35,17 @@ function initTemp()
 	var lel = new Square(100, 100, 200, 100);
 	lel.set_pick_color(currentOBJ);
 	currentOBJ++;
-	scene1.addObject(lel);
+	var c = new Character();
+	c.addShape(lel);
+	scene1.addObject(c);
 	
 	var lel1 = new Square(-100, -100, 100, 200);
 	lel1.change_color(0, 0, 1);
 	lel1.set_pick_color(currentOBJ);
+	var c2 = new Character();
+	c2.addShape(lel1);
 	currentOBJ++;
-	scene1.addObject(lel1);
+	scene1.addObject(c2);
 }
 
 
@@ -52,12 +56,15 @@ function drawStuff()
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	for(var i = 0; i < scene1.objects.length; i++)
 	{
-		var n = initVertexBuffers(gl, i);
-		gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
+		for(var j = 0; j < scene1.objects[i].shapes.length; j++)
+		{
+			var n = initVertexBuffers(gl, i, j);
+			gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
+		}
 	}
 }
 
-function initVertexBuffers(gl, index)
+function initVertexBuffers(gl, index, index_s)
 {// buffers the light objects
 	var f_vertices;
 	var f_colors;
@@ -81,9 +88,9 @@ function initVertexBuffers(gl, index)
 		return -1;
 	}
 				
-	f_vertices = new Float32Array(scene1.objects[index].vertices);
-	f_colors = new Float32Array(scene1.objects[index].colors);
-	u_indices = new Uint16Array(scene1.objects[index].indices);
+	f_vertices = new Float32Array(scene1.objects[index].shapes[index_s].vertices);
+	f_colors = new Float32Array(scene1.objects[index].shapes[index_s].colors);
+	u_indices = new Uint16Array(scene1.objects[index].shapes[index_s].indices);
 	
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
