@@ -3,6 +3,8 @@ function Shape(x, y)
 {
 	this.locX = x;
 	this.locY = y;
+	this.draw = true;
+	this.name = "shape";
 }
 
 Shape.prototype.retX = function()

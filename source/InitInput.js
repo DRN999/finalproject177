@@ -3,7 +3,7 @@ var Mouse =
 {
 	pressed: {},
 	
-	x: 300,
+	x: 0,
 	y: 0,
 	LEFT: 1,
 	MIDDLE: 2,
@@ -42,6 +42,7 @@ var Key =
 	UP: 38,
 	RIGHT: 39,
 	DOWN: 40,
+	SPACE: 32,
 	w: 119,
 	a: 97,
 	s: 115,

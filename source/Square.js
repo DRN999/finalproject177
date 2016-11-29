@@ -19,10 +19,10 @@ function Square(x, y, w, h)
 	
 	this.colors = 
 	[
-		1, 0, 0,
-		1, 0, 0,
-		1, 0, 0,
-		1, 0, 0
+		1, 0, 0, 1,
+		1, 0, 0, 1,
+		1, 0, 0, 1,
+		1, 0, 0, 1
 	]
 }
 
@@ -35,13 +35,13 @@ Square.prototype.ret_Area = function()
 	return this.width * this.height;
 }
 
-Square.prototype.change_color = function(r, g, b)
+Square.prototype.change_color = function(r, g, b, a)
 {
 	this.colors = [
-		r, g, b,
-		r, g, b,
-		r, g, b,
-		r, g, b
+		r, g, b, a,
+		r, g, b, a,
+		r, g, b, a,
+		r, g, b, a
 	]
 }
 

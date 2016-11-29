@@ -20,6 +20,11 @@ Scene.prototype.addObject = function(obj)
 	return 1;
 }
 
+Scene.prototype.pop = function()
+{
+	return this.objects.pop();
+}
+
 Scene.prototype.objects = function()
 {
 	return this.objects;

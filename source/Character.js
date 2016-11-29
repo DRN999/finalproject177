@@ -41,10 +41,10 @@ Character.prototype.updateVertices = function()
 	}
 }
 
-Character.prototype.change_all_color = function(r,g,b)
+Character.prototype.change_all_color = function(r,g,b,a)
 {
 	for(var i in this.shapes)
 	{
-		this.shapes[i].change_color(r,g,b);
+		this.shapes[i].change_color(r,g,b,a);
 	}
 }
