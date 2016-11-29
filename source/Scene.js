@@ -1,19 +1,12 @@
 
 function Scene(obj)
 {
-	if(!obj instanceof Array)
-	{
-		console.log("incorrect format");
-		return -1;
-	}
-	else if(obj == null)
-	{
-		this.objects = new Array();
-	}
-	else
+	this.objects = new Array();
+	if(obj instanceof Array)
 	{
 		this.objects = obj;
 	}
+	this.count = this.objects.length;
 }
 
 Scene.prototype.addObject = function(obj)
