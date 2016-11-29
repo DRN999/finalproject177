@@ -7,7 +7,7 @@ function initInput()
 
 	canvas.onmousedown = function(e)
 	{// initialize mousedown
-	
+		
 	}// End onmousedown
 	
 	canvas.onmouseup = function(e)

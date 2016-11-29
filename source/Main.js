@@ -42,6 +42,9 @@ function initVertexBuffers(gl)
 	}
 	
 	var lel = new Square(100, 100, 200, 200);
+	lel.set_pick_color(currentOBJ);
+	currentOBJ++;
+	console.log(lel.pick_color);
 	console.log(lel.retX() + ", " + lel.retY());
 						
 	f_vertices = new Float32Array(lel.vertices);
