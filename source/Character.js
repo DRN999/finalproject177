@@ -1,3 +1,5 @@
+// Character object
+// contains single to multiple shapes that will stick as one character
 
 function Character(x, y)
 {

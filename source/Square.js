@@ -1,3 +1,5 @@
+//Square object
+//extends off Shape and contains more in-depth information
 
 function Square(x, y, w, h)
 {

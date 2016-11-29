@@ -1,6 +1,6 @@
 
 function main()
-{
+{// main function
 	
 	var shader = initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE);
 	if(!gl || !shader)
@@ -20,10 +20,10 @@ function main()
 	}// End tick()
 	tick();
 	
-}
+}// End main
 
 function updateKeyInfo()
-{
+{// updates the keyboard inputs
 	if (Key.isDown(Key.w)||Key.isDown(Key.W)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, 10);
 	if (Key.isDown(Key.a)||Key.isDown(Key.A)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(-10, 0);
 	if (Key.isDown(Key.s)||Key.isDown(Key.S)) scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, -10);
@@ -37,10 +37,10 @@ function updateKeyInfo()
 	else scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
 	
 	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
-}
+}// End updateKeyInfo
 
 function checkCollisionSpray()
-{
+{// check if the spray collides with the hair
 	for(var j = 0; j < scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length; j++)
 	{
 		if( scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].name == 'hair')
@@ -60,22 +60,20 @@ function checkCollisionSpray()
 			}
 		}
 	}
-	
-	
-}
+}// End checkCollisionSpray
 
 function updateMouseInfo()
-{
+{// updates the mouse input
 	scene1.objects[ITEM_KEY.PLAYER1].change_character(Mouse.x, Mouse.y);
 	scene1.objects[ITEM_KEY.PLAYER1].updateVertices();
 	if(Mouse.isDown(Mouse.LEFT))
 	{
 		checkSprayedHair();
 	}
-}
+}// End updateMouseInfo
 
 function checkSprayedHair()
-{
+{// see if razor gets any sprayed hair
 	for(var j = 0; j < scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length; j++)
 	{
 		if(scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].name == "spray-hair")
@@ -95,10 +93,10 @@ function checkSprayedHair()
 			}
 		}
 	}
-}
+}// End checkSprayedHair
 
 function initTemp()
-{
+{// initializes the shapes
 	var neg = ITEM_KEY.PLAYER1 == 0 ? 1 : -1;
 	Mouse.x = neg == -1 ? 300 : 0;
 	
@@ -152,11 +150,11 @@ function initTemp()
 	c.addShape(lel);
 	scene1.addObject(c);
 	
-}
+}// End initTemp
 
 
 function drawStuff()
-{//text function
+{//draws the shapes
 	gl.clearColor(1,1,1,1);
 	gl.enable(gl.DEPTH_TEST);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -169,13 +167,13 @@ function drawStuff()
 				gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
 		}
 	}
-}
+}// End drawStuff
 
 function initVertexBuffers(gl, index, index_s)
 {// buffers the light objects
 	
 	if(!scene1.objects[index].shapes[index_s].draw)
-	{
+	{// draw only if draw == true
 		return -1;
 	}
 	

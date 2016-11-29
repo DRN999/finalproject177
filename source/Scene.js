@@ -1,3 +1,5 @@
+// Scene object(container)
+// contains the characters that are in the scene
 
 function Scene(obj)
 {

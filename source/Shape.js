@@ -1,3 +1,5 @@
+//Shape object
+// basic shape container
 
 function Shape(x, y)
 {
