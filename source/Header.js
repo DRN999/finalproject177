@@ -14,3 +14,8 @@ var ITEM_KEY =
 	FOOTHAIR: 2,
 	FOOT: 3
 };
+
+var DRAW_KEY = new Map();
+DRAW_KEY.set("POINTS", gl.POINTS);
+DRAW_KEY.set("LINE_STRIP", gl.LINE_STRIP);
+DRAW_KEY.set("TRIANGLES", gl.TRIANGLES);

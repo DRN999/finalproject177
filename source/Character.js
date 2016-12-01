@@ -8,6 +8,7 @@ function Character(x, y)
 	this.shapes = new Array();
 	this.isPlayer = false;
 	this.playerNum = 0;
+	this.drawFormat = "";
 }
 
 Character.prototype.addShape = function(obj)
@@ -54,4 +55,42 @@ Character.prototype.change_all_color = function(r,g,b,a)
 Character.prototype.remove = function(index)
 {
 	this.shapes.splice(index, 1);
+}
+
+Character.prototype.concat_vertices = function()
+{
+	var temp = new Array();
+	for(var i = 0; i < this.shapes.length; i++)
+	{
+		if(this.shapes[i].draw)
+			temp = temp.concat(this.shapes[i].vertices);
+	}
+	return temp;
+}
+
+Character.prototype.concat_indices = function()
+{
+	var temp = new Array();
+	for(var i = 0; i < this.shapes.length; i++)
+	{
+		if(this.shapes[i].draw)
+		{
+			if(i == 0)
+				temp = temp.concat(this.shapes[i].indices);
+			else
+				temp = temp.concat(this.shapes[i].added_indices((this.shapes[i-1].indices_max + 1) * (i)));
+		}
+	}
+	return temp;
+}
+
+Character.prototype.concat_colors = function()
+{
+	var temp = new Array();
+	for(var i = 0; i < this.shapes.length; i++)
+	{
+		if(this.shapes[i].draw)
+			temp = temp.concat(this.shapes[i].colors);
+	}
+	return temp;
 }

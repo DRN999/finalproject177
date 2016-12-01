@@ -7,6 +7,10 @@ function Shape(x, y)
 	this.locY = y;
 	this.draw = true;
 	this.name = "shape";
+	this.vertices = new Array();
+	this.indices = new Array();
+	this.colors = new Array();
+	this.indices_max = 0;
 }
 
 Shape.prototype.retX = function()
@@ -29,4 +33,15 @@ Shape.prototype.shift_location = function(x,y)
 {
 	this.locX += x;
 	this.locY += y;
+}
+
+
+Shape.prototype.added_indices = function(num)
+{
+	var temp = new Array();
+	for(var i = 0; i < this.indices.length; i++)
+	{
+		temp.push(this.indices[i] + num);
+	}
+	return temp;
 }

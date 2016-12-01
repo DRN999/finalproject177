@@ -115,6 +115,7 @@ function initTemp()
 	lel.change_color(1, 1, 1, 1);
 	lel.draw = false;
 	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
 	
 	c = new Character(300 * neg, 0);
@@ -128,11 +129,13 @@ function initTemp()
 	c.addShape(lel);
 	lel = new Square(-100, 0, 50, 75);
 	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
 	c.change_all_color(0, 0, 1, 1);
 	scene1.addObject(c);
 	
 	c = new Character(0,0);
 	initHair(c);
+	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
 	
 	c = new Character(0, 0);
@@ -142,6 +145,7 @@ function initTemp()
 	lel = new Square(0, -200, 150, 75);
 	lel.change_color(1, 0.5, 0, 1);
 	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
 	
 }// End initTemp
@@ -170,28 +174,29 @@ function drawStuff()
 	gl.clearColor(1,1,1,1);
 	gl.enable(gl.DEPTH_TEST);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+	var vertices = new Array();
+	var indices = new Array();
+	var colors = new Array();
+	
 	for(var i = 0; i < scene1.objects.length; i++)
 	{
-		for(var j = 0; j < scene1.objects[i].shapes.length; j++)
-		{
-			var n = initVertexBuffers(gl, i, j);
-			if(n > 0)
-				gl.drawElements(gl.TRIANGLES, n , gl.UNSIGNED_SHORT, 0);
-		}
+		vertices = scene1.objects[i].concat_vertices();
+		indices = scene1.objects[i].concat_indices();
+		colors  = scene1.objects[i].concat_colors();
+		var n = initVertexBuffers(gl, vertices, indices, colors);
+		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
 	}
+	
 }// End drawStuff
 
-function initVertexBuffers(gl, index, index_s)
+function initVertexBuffers(gl, vertices, indices, colors)
 {// buffers the light objects
 	
-	if(!scene1.objects[index].shapes[index_s].draw)
-	{// draw only if draw == true
-		return -1;
-	}
+	var f_vertices = new Float32Array(vertices);
+	var f_colors = new Float32Array(colors);
+	var u_indices = new Uint16Array(indices);
 	
-	var f_vertices;
-	var f_colors;
-	var u_indices;
 	var mvpMatrix = new Matrix4();
 	var vertex_buffer = gl.createBuffer();
 	var index_buffer = gl.createBuffer();
@@ -211,10 +216,6 @@ function initVertexBuffers(gl, index, index_s)
 		return -1;
 	}
 				
-	f_vertices = new Float32Array(scene1.objects[index].shapes[index_s].vertices);
-	f_colors = new Float32Array(scene1.objects[index].shapes[index_s].colors);
-	u_indices = new Uint16Array(scene1.objects[index].shapes[index_s].indices);
-	
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
 	init_array_buffer(vertex_buffer, 3, "a_Position", f_vertices, gl.program);

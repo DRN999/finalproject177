@@ -19,6 +19,8 @@ function Square(x, y, w, h)
 		0, 1, 2, 1, 3, 2
 	]
 	
+	this.indices_max = 3;
+	
 	this.colors = 
 	[
 		1, 0, 0, 1,
@@ -26,6 +28,8 @@ function Square(x, y, w, h)
 		1, 0, 0, 1,
 		1, 0, 0, 1
 	]
+	
+	this.name = "square";
 }
 
 Square.prototype = Object.create(Shape.prototype);
