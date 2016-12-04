@@ -3,8 +3,10 @@ function ImageShape(x, y, w, h, url, index)
 {
 	Square.call(this, x, y, w, h);
 	this.url = url;
-	this.texture = gl.createTexture();
-	this.image = new Image();
+	var tex = gl.createTexture();
+	this.texture = tex;
+	var img = new Image();
+	this.image = img;
 	this.loaded = false;
 	this.index = index;
 	this.image.crossOrigin = "";
@@ -13,7 +15,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.onload = function()
 	{
 		this.loaded = true;
-		handleTextureLoaded(this.image, this.texture);
+		handleTextureLoaded(img, tex);
 		gl.activeTexture(gl.TEXTURE0 + this.index);
 		gl.bindTexture(gl.TEXTURE_2D, this.texture);
 		gl.useProgram(tex_program);
