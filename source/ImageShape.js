@@ -7,14 +7,12 @@ function ImageShape(x, y, w, h, url, index)
 	this.texture = tex;
 	var img = new Image();
 	this.image = img;
-	this.loaded = false;
 	this.index = index;
 	this.image.crossOrigin = "";
 	this.image.src = url;
 	
 	this.image.onload = function()
 	{
-		this.loaded = true;
 		handleTextureLoaded(img, tex);
 		gl.activeTexture(gl.TEXTURE0 + index);
 		gl.bindTexture(gl.TEXTURE_2D, tex);
