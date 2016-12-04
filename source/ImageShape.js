@@ -10,8 +10,6 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.crossOrigin = "";
 	this.image.src = url;
 	
-	this
-	
 	this.image.onload = function()
 	{
 		this.loaded = true;
