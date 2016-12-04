@@ -5,6 +5,7 @@ var VSHADER_SOURCE_TEXTURE = document.getElementById("vertex-shader-texture").te
 var FSHADER_SOURCE_TEXTURE = document.getElementById("fragment-shader-texture").text;// Fragment Shader
 var canvas = document.getElementById('webgl'); // canvas
 var gl = WebGLUtils.setupWebGL(canvas,{preserveDrawingBuffer: true}, {premultipliedAlpha: false});
+var image_track = new Array();
 var default_program;
 var tex_program;
 var CANVAS_HEIGHT = 720;

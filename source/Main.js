@@ -13,6 +13,19 @@ function main()
 	initTemp();
 	initInputMouse();
 	initInputKey();
+	var all_load = false;
+	do
+	{
+		all_load = true;
+		console.log("loading...");
+		for(var i = 0; i < image_track.length; i++)
+		{
+			if(!image_track[i].loaded)
+				all_load = false;
+		}
+	}while(!all_load);
+	
+	
 	var tick = function()
 	{// animation tick
 		updateKeyInfo();
@@ -158,6 +171,7 @@ function initTemp()
 	
 	c = new Character(-300, 300);
 	lel = new ImageShape(0, 0, 300, 300, "../resources/blue.jpg", 0);
+	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
