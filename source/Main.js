@@ -156,6 +156,13 @@ function initTemp()
 	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
 	
+	c = new Character(-300, 300);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/blue.jpg", 0);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	scene1.addObject(c);
+	
 }// End initTemp
 
 function initHair(c)
@@ -186,21 +193,34 @@ function drawStuff()
 	var vertices = new Array();
 	var indices = new Array();
 	var colors = new Array();
-	
+	var tex = new Array();
+	var n = 0;
 	for(var i = 0; i < scene1.objects.length; i++)
 	{
-		vertices = scene1.objects[i].concat_vertices();
-		indices = scene1.objects[i].concat_indices();
-		colors  = scene1.objects[i].concat_colors();
-		var n = initVertexBuffers(gl, vertices, indices, colors);
+		if(scene1.object[i].drawProgram == 0)
+		{
+			vertices = scene1.objects[i].concat_vertices();
+			indices = scene1.objects[i].concat_indices();
+			colors  = scene1.objects[i].concat_colors();
+			n = initVertexBuffers(gl, vertices, indices, colors);
+		}
+		else
+		{
+			vertices = scene1.objects[i].concat_vertices();
+			indices = scene1.objects[i].concat_indices();
+			tex = scene1.object[i].tex_coord;
+			n = initVertexBuffersTexture(gl, vertices, indices, tex);
+		}
 		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
+		
 	}
 	
 }// End drawStuff
 
 function initVertexBuffers(gl, vertices, indices, colors)
 {// buffers the light objects
-	
+	gl.useProgram(default_program);
+	gl.program = default_program;
 	var f_vertices = new Float32Array(vertices);
 	var f_colors = new Float32Array(colors);
 	var u_indices = new Uint16Array(indices);
@@ -233,4 +253,41 @@ function initVertexBuffers(gl, vertices, indices, colors)
 	
 	return u_indices.length;
 	
-}// End initVertexBuffersLight
+}// End initVertexBuffers
+
+function initVertexBuffersTexture(gl, vertices, tex_coord, indices)
+{
+	gl.useProgram(tex_program);
+	gl.program = tex_program;
+	var f_vertices = new Float32Array(vertices);
+	var f_tex_coord = new Float32Array(tex_coord);
+	var u_indices = new Uint16Array(indices);
+	
+	var mvpMatrix = new Matrix4();
+	var vertex_buffer = gl.createBuffer();
+	var index_buffer = gl.createBuffer();
+	var texture_buffer = gl.createBuffer();
+	var u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+	
+	mvpMatrix.setOrtho
+	(
+		-640, 640,
+		-360, 360,
+		-600, 600
+	);
+	
+	if(!vertex_buffer || ! index_buffer || !texture_buffer)
+	{// check if both buffer created succesfully 
+		console.log("failed to create buffer");
+		return -1;
+	}
+	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
+
+	init_array_buffer(vertex_buffer, 3, "a_Position", f_vertices, gl.program);
+	init_array_buffer(texture_buffer, 2, "a_Texcoord", f_tex_coord, gl.program);
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, u_indices, gl.STATIC_DRAW);
+	
+	return u_indices.length;
+	
+}

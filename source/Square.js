@@ -16,7 +16,8 @@ function Square(x, y, w, h)
 	
 	this.indices = 
 	[
-		0, 1, 2, 1, 3, 2
+		0, 1, 2, 
+		1, 3, 2
 	]
 	
 	this.indices_max = 3;
