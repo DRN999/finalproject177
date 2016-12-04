@@ -13,29 +13,31 @@ function main()
 	initTemp();
 	initInputMouse();
 	initInputKey();
-	var all_load = false;
-	do
-	{
-		all_load = true;
-		console.log("loading...");
-		for(var i = 0; i < image_track.length; i++)
-		{
-			if(!image_track[i].loaded)
-				all_load = false;
-		}
-	}while(!all_load);
-	
-	
+		
 	var tick = function()
 	{// animation tick
-		updateKeyInfo();
-		updateMouseInfo();
-		drawStuff();
+		if(check_loaded())
+		{
+			updateKeyInfo();
+			updateMouseInfo();
+			drawStuff();
+		}
 		requestAnimationFrame(tick, canvas);					
 	}// End tick()
 	tick();
 	
 }// End main
+
+function check_loaded()
+{
+
+	for(var i = 0; i < image_track.length; i++)
+	{
+		if(!image_track[i].loaded)
+			return false;
+	}
+	return true;
+}
 
 function initShaders()
 {
