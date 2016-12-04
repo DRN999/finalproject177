@@ -216,7 +216,8 @@ function drawStuff()
 	gl.clearColor(1,1,1,1);
 	gl.enable(gl.DEPTH_TEST);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+	gl.enable(gl.BLEND);
 	var vertices = new Array();
 	var indices = new Array();
 	var colors = new Array();
@@ -284,8 +285,7 @@ function initVertexBuffers(gl, vertices, indices, colors)
 
 function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 {
-	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-	gl.enable(gl.BLEND);
+	
 	gl.useProgram(tex_program);
 	gl.program = tex_program;
 	var f_vertices = new Float32Array(vertices);
