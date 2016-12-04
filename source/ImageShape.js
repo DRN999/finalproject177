@@ -12,7 +12,10 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.onload = function()
 	{
 		console.log("loaded");
+		console.log(tex);
+		console.log(img);
 		handleTextureLoaded(img, tex);
+		
 		loadedImage(index);
 		gl.activeTexture(gl.TEXTURE0 + index);
 		gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -31,7 +34,6 @@ function ImageShape(x, y, w, h, url, index)
 		1, 1
 	];
 	this.name = "image";
-	console.log(this.image);
 }
 
 ImageShape.prototype = Object.create(Square.prototype);
