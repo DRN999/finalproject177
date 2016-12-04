@@ -17,7 +17,8 @@ var ITEM_KEY =
 	PLAYER1: 1,
 	PLAYER2: 0,
 	FOOTHAIR: 2,
-	FOOT: 3
+	FOOT: 3,
+	TEXTURE: 4
 };
 
 var DRAW_KEY = new Map();

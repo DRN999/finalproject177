@@ -28,7 +28,7 @@ function ImageShape(x, y, w, h, url, index)
 		0, 0,
 		0, 1,
 		1, 0,
-		1, 1	
+		1, 1
 	];
 	this.name = "image";
 	console.log(this.image);
