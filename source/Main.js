@@ -214,10 +214,10 @@ function initHair(c)
 function drawStuff()
 {//draws the shapes
 	gl.clearColor(1,1,1,1);
-	gl.enable(gl.DEPTH_TEST);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 	gl.enable(gl.BLEND);
+	gl.enable(gl.DEPTH_TEST);
 	var vertices = new Array();
 	var indices = new Array();
 	var colors = new Array();
@@ -297,7 +297,7 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 	var index_buffer = gl.createBuffer();
 	var texture_buffer = gl.createBuffer();
 	var u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
-	
+	var u_Alpha = gl.getUniformLocation(gl.program, 'u_Alpha');
 	mvpMatrix.setOrtho
 	(
 		-640, 640,

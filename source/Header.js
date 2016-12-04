@@ -4,7 +4,7 @@ var FSHADER_SOURCE = document.getElementById("fragment-shader").text;// Fragment
 var VSHADER_SOURCE_TEXTURE = document.getElementById("vertex-shader-texture").text;// Vertex Shader
 var FSHADER_SOURCE_TEXTURE = document.getElementById("fragment-shader-texture").text;// Fragment Shader
 var canvas = document.getElementById('webgl'); // canvas
-var gl = WebGLUtils.setupWebGL(canvas,{preserveDrawingBuffer: true}, {premultipliedAlpha: false});
+var gl = WebGLUtils.setupWebGL(canvas,{preserveDrawingBuffer: true}, {premultipliedAlpha: false}, {alpha: false});
 var image_track = new Array();
 var default_program;
 var tex_program;
