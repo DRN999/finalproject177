@@ -12,7 +12,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.onload = function()
 	{
 		this.loaded = true;
-		handleTextureLoaded(this.image, this.texture);
+		this.handleTextureLoaded();
 		gl.activeTexture(gl.TEXTURE0 + this.index);
 		gl.bindTexture(gl.TEXTURE_2D, this.texture);
 		gl.useProgram(tex_program);
@@ -35,12 +35,12 @@ ImageShape.prototype = Object.create(Square.prototype);
 
 ImageShape.prototype.constructor = ImageShape;
 
-function handleTextureLoaded(img, texture)
+ImageShape.prototype.handleTextureLoaded = function()
 {
-	gl.bindTexture(gl.TEXTURE_2D, texture);
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-	console.log(img);
-	if(isPowerOf2(img.width) && isPowerOf2(img.height))
+	gl.bindTexture(gl.TEXTURE_2D, this.texture);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.image);
+	console.log(this.image);
+	if(isPowerOf2(this.image.width) && isPowerOf2(this.image.height))
 	{
 		gl.generateMipmap(gl.TEXTURE_2D);
 	}
