@@ -9,6 +9,7 @@ function Character(x, y)
 	this.isPlayer = false;
 	this.playerNum = 0;
 	this.drawFormat = "";
+	this.drawProgram = 0;
 }
 
 Character.prototype.addShape = function(obj)

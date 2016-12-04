@@ -2,8 +2,10 @@
 function main()
 {// main function
 	
-	var shader = initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE);
-	if(!gl || !shader)
+	initShaders();
+	gl.useProgram(default_program);
+	gl.program = default_program;
+	if(!gl)
 	{
 		console.log("failed to load context");
 		return -1;
@@ -21,6 +23,12 @@ function main()
 	tick();
 	
 }// End main
+
+function initShaders()
+{
+	default_program = createProgram(gl, VSHADER_SOURCE, FSHADER_SOURCE);
+	tex_program = createProgram(gl, VSHADER_SOURCE_TEXTURE, FSHADER_SOURCE_TEXTURE);
+}
 
 function updateKeyInfo()
 {// updates the keyboard inputs
