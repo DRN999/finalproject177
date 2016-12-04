@@ -9,9 +9,6 @@ function ImageShape(x, y, w, h, url, index)
 	this.image = img;
 	this.loaded = false;
 	this.index = index;
-	this.image.crossOrigin = "";
-	this.image.src = url;
-	
 	this.image.onload = function()
 	{
 		handleTextureLoaded(img, tex);
@@ -23,6 +20,8 @@ function ImageShape(x, y, w, h, url, index)
 		var u_Texture = gl.getUniformLocation(gl.program, "u_Texture");
 		gl.uniform1i(u_Texture, 0);
 	}
+	this.image.crossOrigin = "";
+	this.image.src = url;
 	this.tex_coord = 
 	[
 		0, 0,

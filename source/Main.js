@@ -279,7 +279,9 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 {
 	gl.useProgram(tex_program);
 	gl.program = tex_program;
-	console.log(texture);
+	console.log(vertices);
+	console.log(indices);
+	console.log(tex_coord);
 	var f_vertices = new Float32Array(vertices);
 	var f_tex_coord = new Float32Array(tex_coord);
 	var u_indices = new Uint16Array(indices);
