@@ -284,6 +284,8 @@ function initVertexBuffers(gl, vertices, indices, colors)
 
 function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 {
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+	gl.enable(gl.BLEND);
 	gl.useProgram(tex_program);
 	gl.program = tex_program;
 	var f_vertices = new Float32Array(vertices);
