@@ -10,28 +10,12 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.crossOrigin = "";
 	this.image.src = url;
 	
-	this.handleTextureLoaded = function()
-	{
-		gl.bindTexture(gl.TEXTURE_2D, this.texture);
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.image);
-		console.log(this.image);
-		if(isPowerOf2(this.image.width) && isPowerOf2(this.image.height))
-		{
-			gl.generateMipmap(gl.TEXTURE_2D);
-		}
-		else
-		{
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-		}		
-	}
+	this
 	
 	this.image.onload = function()
 	{
 		this.loaded = true;
-		this.handleTextureLoaded();
+		handleTextureLoaded(this.image, this.texture);
 		gl.activeTexture(gl.TEXTURE0 + this.index);
 		gl.bindTexture(gl.TEXTURE_2D, this.texture);
 		gl.useProgram(tex_program);
@@ -57,4 +41,22 @@ ImageShape.prototype.constructor = ImageShape;
 function isPowerOf2(value) 
 {
 	return (value & (value - 1)) == 0;
+}
+
+function handleTextureLoaded(image, texture)
+{
+	gl.bindTexture(gl.TEXTURE_2D, this.texture);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.image);
+	console.log(this.image);
+	if(isPowerOf2(this.image.width) && isPowerOf2(this.image.height))
+	{
+		gl.generateMipmap(gl.TEXTURE_2D);
+	}
+	else
+	{
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+	}		
 }
