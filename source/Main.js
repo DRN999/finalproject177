@@ -22,6 +22,10 @@ function main()
 			updateMouseInfo();
 			drawStuff();
 		}
+		else
+		{
+			console.log("loading");
+		}
 		requestAnimationFrame(tick, canvas);					
 	}// End tick()
 	tick();

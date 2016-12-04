@@ -7,6 +7,8 @@ function ImageShape(x, y, w, h, url, index)
 	this.image = new Image();
 	this.loaded = false;
 	this.index = index;
+	this.image.crossOrigin = "";
+	this.image.src = url;
 	this.image.onload = function()
 	{
 		this.loaded = true;
@@ -25,8 +27,6 @@ function ImageShape(x, y, w, h, url, index)
 		1, 0,
 		1, 1	
 	];
-	this.image.crossOrigin = "";
-	this.image.src = url;
 	this.name = "image";
 	console.log(this.image);
 }
