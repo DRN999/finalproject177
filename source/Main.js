@@ -197,7 +197,7 @@ function drawStuff()
 	var n = 0;
 	for(var i = 0; i < scene1.objects.length; i++)
 	{
-		if(scene1.object[i].drawProgram == 0)
+		if(scene1.objects[i].drawProgram == 0)
 		{
 			vertices = scene1.objects[i].concat_vertices();
 			indices = scene1.objects[i].concat_indices();
