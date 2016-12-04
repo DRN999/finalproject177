@@ -11,6 +11,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.index = index;
 	this.image.onload = function()
 	{
+		console.log("loaded");
 		handleTextureLoaded(img, tex);
 		loadedImage(index);
 		gl.activeTexture(gl.TEXTURE0 + index);
