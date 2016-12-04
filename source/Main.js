@@ -131,6 +131,7 @@ function initTemp()
 	var neg = ITEM_KEY.PLAYER1 == 0 ? 1 : -1;
 	Mouse.x = neg == -1 ? 300 : 0;
 	
+	//p1
 	var c = new Character(300 * neg, 0);
 	var lel = new Square(25, 50, 100, 25);
 	c.addShape(lel);
@@ -145,7 +146,35 @@ function initTemp()
 	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
 	
+	//p2
 	c = new Character(300 * neg, 0);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/blue.jpg", 0);
+	image_track.push(lel);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	scene1.addObject(c);
+	
+	
+	//hair
+	c = new Character(0,0);
+	initHair(c);
+	c.drawFormat = "TRIANGLES";
+	scene1.addObject(c);
+	
+	// leg
+	c = new Character(0, 0);
+	lel = new Square(0, 0, 100, 350);
+	lel.change_color(1, 0.5, 0, 1);
+	c.addShape(lel);
+	lel = new Square(0, -200, 150, 75);
+	lel.change_color(1, 0.5, 0, 1);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	scene1.addObject(c);
+	
+	//extra
+	c = new Character(300, 0);
 	lel = new Square(0, 50, 200, 35);
 	c.addShape(lel);
 	lel = new Square(100, 0, 50, 75);
@@ -160,28 +189,6 @@ function initTemp()
 	c.change_all_color(0, 0, 1, 1);
 	scene1.addObject(c);
 	
-	c = new Character(0,0);
-	initHair(c);
-	c.drawFormat = "TRIANGLES";
-	scene1.addObject(c);
-	
-	c = new Character(0, 0);
-	lel = new Square(0, 0, 100, 350);
-	lel.change_color(1, 0.5, 0, 1);
-	c.addShape(lel);
-	lel = new Square(0, -200, 150, 75);
-	lel.change_color(1, 0.5, 0, 1);
-	c.addShape(lel);
-	c.drawFormat = "TRIANGLES";
-	scene1.addObject(c);
-	
-	c = new Character(-300, 300);
-	lel = new ImageShape(0, 0, 300, 300, "../resources/blue.jpg", 0);
-	image_track.push(lel);
-	c.addShape(lel);
-	c.drawFormat = "TRIANGLES";
-	c.drawProgram = 1;
-	scene1.addObject(c);
 	
 }// End initTemp
 
