@@ -26,7 +26,7 @@ function ImageShape(x, y, w, h, url, index)
 		1, 1	
 	];
 	this.image.crossOrigin = "";
-	this.image.src = name;
+	this.image.src = url;
 	this.name = "image";
 	console.log(this.image);
 }
