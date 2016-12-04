@@ -115,10 +115,10 @@ function checkSprayedHair()
 			var player = scene1.objects[ITEM_KEY.PLAYER1];
 			if
 			(
-				checkX <= player.x_orig + 300 &&
-				checkX >= player.x_orig - 300 &&
-				checkY <= player.y_orig + 300 &&
-				checkY >= player.y_orig - 300
+				checkX <= player.x_orig + 150 &&
+				checkX >= player.x_orig - 150 &&
+				checkY <= player.y_orig + 150 &&
+				checkY >= player.y_orig - 150
 			){
 				scene1.objects[ITEM_KEY.FOOTHAIR].remove(j);
 			}
