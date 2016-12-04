@@ -7,6 +7,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.texture = tex;
 	var img = new Image();
 	this.image = img;
+	this.loaded = true;
 	this.index = index;
 	this.image.crossOrigin = "";
 	this.image.src = url;
