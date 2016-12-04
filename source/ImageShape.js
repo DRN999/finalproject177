@@ -16,8 +16,8 @@ function ImageShape(x, y, w, h, url, index)
 	{
 		this.loaded = true;
 		handleTextureLoaded(img, tex);
-		gl.activeTexture(gl.TEXTURE0 + this.index);
-		gl.bindTexture(gl.TEXTURE_2D, this.texture);
+		gl.activeTexture(gl.TEXTURE0 + index);
+		gl.bindTexture(gl.TEXTURE_2D, tex);
 		gl.useProgram(tex_program);
 		gl.program = tex_program;
 		var u_Texture = gl.getUniformLocation(gl.program, "u_Texture");
