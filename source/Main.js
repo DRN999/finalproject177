@@ -208,7 +208,7 @@ function drawStuff()
 		{
 			vertices = scene1.objects[i].concat_vertices();
 			indices = scene1.objects[i].concat_indices();
-			tex = scene1.object[i].tex_coord;
+			tex = scene1.objects[i].shapes[0].tex_coord;
 			n = initVertexBuffersTexture(gl, vertices, indices, tex, scene1.objects[i].shapes[0].texture);
 		}
 		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
