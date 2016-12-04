@@ -7,7 +7,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.texture = tex;
 	var img = new Image();
 	this.image = img;
-	this.loaded = true;
+	this.loaded = false;
 	this.index = index;
 	this.image.crossOrigin = "";
 	this.image.src = url;
@@ -15,6 +15,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.onload = function()
 	{
 		handleTextureLoaded(img, tex);
+		loadedImage(index);
 		gl.activeTexture(gl.TEXTURE0 + index);
 		gl.bindTexture(gl.TEXTURE_2D, tex);
 		gl.useProgram(tex_program);
@@ -57,4 +58,8 @@ function handleTextureLoaded(image, texture)
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
 	}		
+}
+function loadedImage(index)
+{
+	image_track[index].loaded = true;
 }
