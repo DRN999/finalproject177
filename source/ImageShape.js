@@ -40,7 +40,7 @@ ImageShape.prototype = Object.create(Square.prototype);
 
 ImageShape.prototype.constructor = ImageShape;
 
-ImageShape.prototype.flipTextureVert() = function()
+ImageShape.prototype.flipTextureVert = function()
 {
 	var tex1 = [this.tex_coord[0],this.tex_coord[1]];
 	var tex2 = [this.tex_coord[2],this.tex_coord[3]];
@@ -56,7 +56,7 @@ ImageShape.prototype.flipTextureVert() = function()
 	this.tex_coord[7] = tex3[1];
 }
 
-ImageShape.prototype.flipTextureHori() = function()
+ImageShape.prototype.flipTextureHori = function()
 {
 	var tex1 = [this.tex_coord[0],this.tex_coord[1]];
 	var tex2 = [this.tex_coord[2],this.tex_coord[3]];
