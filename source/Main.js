@@ -56,6 +56,7 @@ function scene_tick()
 		if(check_loaded(image_track) && press_start)
 		{
 			drawStuff();
+			moveFoot();
 			updateKeyInfo();
 			updateMouseInfo();
 		}
@@ -82,6 +83,17 @@ function initShaders()
 {
 	default_program = createProgram(gl, VSHADER_SOURCE, FSHADER_SOURCE);
 	tex_program = createProgram(gl, VSHADER_SOURCE_TEXTURE, FSHADER_SOURCE_TEXTURE);
+}
+
+function moveFoot()
+{
+	for(var j = 0; j < scenes[1].objects.length; j++)
+	{
+		if( scenes[1].objects[j].name == 'hair' || scenes[1].objects[j].name == 'leg' )
+		{
+			scenes[1].objects[j].shapes[0].shift_character(2, 0);
+		}
+	}
 }
 
 function updateKeyInfo()
@@ -274,6 +286,7 @@ function initTemp()
 	image_track.push(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
+	c.name = "leg";
 	c.addShape(lel);
 	scenes[1].addObject(c);
 	ITEM_KEY.FOOT = image_index - 1;
