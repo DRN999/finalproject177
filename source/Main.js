@@ -15,26 +15,45 @@ function main()
 	initInputMouse();
 	initInputKey();
 	
+	scenes[0].drawing = true;
+	scenes[1].drawing = false;
 	console.log(image_track_0);
+	start_menu();
+	scene_tick();
+	
+	
+	
+}// End main
+
+function start_menu()
+{
 	var start = function()
 	{
 		if(check_loaded(image_track_0))
 		{
-			console.log("called");
 			drawStuff();
 			updateMouseInfoMenu();
 		}
+		else
+		{
+			console.log("loading menu");
+		}
 		if(!press_start)
 			requestAnimationFrame(start, canvas);
+		else
+		{
+			scenes[0].drawing = false;
+			scenes[1].drawing = true;
+		}
 	}
 	start();
-	
-	scenes[0].drawing = false;
-	scenes[1].drawing = true;
-	
+}
+
+function scene_tick()
+{
 	var tick = function()
 	{// animation tick
-		if(check_loaded(image_track))
+		if(check_loaded(image_track) && press_start)
 		{
 			drawStuff();
 			updateKeyInfo();
@@ -47,8 +66,7 @@ function main()
 		requestAnimationFrame(tick, canvas);					
 	}// End tick()
 	tick();
-	
-}// End main
+}
 
 function check_loaded(tracker)
 {
@@ -146,20 +164,22 @@ function updateMouseInfo()
 
 function updateMouseInfoMenu()
 {
+	scenes[0].objects[2].change_character(Mouse.x, Mouse.y);
+	scenes[0].objects[2].updateVertices();
 	if
 	(
 		Mouse.x > -300 && Mouse.x < 300 &&
 		Mouse.y > -100 && Mouse.y < 100 
 	){
 		scenes[0].objects[0].drawObject = false;
-		scenes[1].objects[1].drawObject = true;
+		scenes[0].objects[1].drawObject = true;
 		if(Mouse.isDown(Mouse.LEFT))
 			press_start = true;
 	}
 	else
 	{
 		scenes[0].objects[0].drawObject = true;
-		scenes[1].objects[1].drawObject = false;
+		scenes[0].objects[1].drawObject = false;
 	}
 }
 
@@ -188,15 +208,14 @@ function checkSprayedHair()
 
 function initTemp()
 {// initializes the shapes
-	scenes[0].drawing = true;
-	scenes[1].drawing = false;
+	
 	
 	var neg = ITEM_KEY.PLAYER1 == 0 ? 1 : -1;
 	Mouse.x = neg == -1 ? 300 : 0;
 	
 	
 	var c = new Character(0, 0);
-	var lel = new ImageShape(0, 0, 600, 200, "Play.png", 0);
+	var lel = new ImageShape(0, 0, 600, 200, "Play.png", 0, 0);
 	image_track_0.push(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
@@ -204,7 +223,7 @@ function initTemp()
 	scenes[0].addObject(c); 
 	
 	c = new Character(0, 0);
-	var lel = new ImageShape(0, 0, 600, 200, "Play_select.png", 1);
+	lel = new ImageShape(0, 0, 600, 200, "Play_select.png", 1, 0);
 	image_track_0.push(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
@@ -212,6 +231,12 @@ function initTemp()
 	c.addShape(lel);
 	scenes[0].addObject(c); 
 	
+	c = new Character(1000, 1000);
+	lel = new Square(0, 0, 10,10);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.change_all_color(0, 0, 0, 1);
+	scenes[0].addObject(c);
 	
 	//extra
 	/*
@@ -245,7 +270,7 @@ function initTemp()
 	*/
 	
 	var c = new Character(0, 0);
-	var lel = new ImageShape(0, 0, 450, 720, "Leg.png", image_index++);
+	var lel = new ImageShape(0, 0, 450, 720, "Leg.png", image_index++, 1);
 	image_track.push(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
@@ -259,7 +284,7 @@ function initTemp()
 	
 	//p2
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", image_index++);
+	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", image_index++, 1);
 	image_track.push(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
@@ -269,7 +294,7 @@ function initTemp()
 	
 	//p1
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "Shaving Cream in claws.png", image_index++);
+	lel = new ImageShape(0, 0, 300, 600, "Shaving Cream in claws.png", image_index++, 1);
 	lel.flipTextureHori();
 	image_track.push(lel);
 	
@@ -281,7 +306,7 @@ function initTemp()
 	
 	//cream
 	c = new Character(300 * neg + 250, 58);
-	lel = new ImageShape(0, 0, 600, 300, "Cream 1.png", image_index++);
+	lel = new ImageShape(0, 0, 600, 300, "Cream 1.png", image_index++, 1);
 	image_track.push(lel);
 	lel.draw = false;
 	c.drawFormat = "TRIANGLES";

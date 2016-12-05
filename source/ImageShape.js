@@ -1,5 +1,5 @@
 
-function ImageShape(x, y, w, h, url, index)
+function ImageShape(x, y, w, h, url, index, sceneN)
 {
 	Shape.call(this, x, y);
 	this.width = w;
@@ -31,7 +31,10 @@ function ImageShape(x, y, w, h, url, index)
 	this.image.onload = function()
 	{
 		handleTextureLoaded(img, tex);
-		loadedImage(index);
+		if(sceneN == 0)
+			loadedImage_0(index);
+		else(sceneN == 1) 
+			loadedImage(index); 
 	}
 	this.image.crossOrigin = "";
 	this.image.src = url;
@@ -59,6 +62,7 @@ ImageShape.prototype.changeImage = function(url)
 	var index = this.index;
 	this.image.onload = function()
 	{
+
 		handleTextureLoaded(img, tex);
 		loadedImage(index);
 	}
@@ -132,6 +136,11 @@ ImageShape.prototype.updateVertices = function(x, y)
 		x + this.locX + this.width/2, y + this.locY + this.height/2, 0,
 		x + this.locX + this.width/2, y + this.locY - this.height/2, 0
 	];
+}
+
+function loadedImage_0(index)
+{
+	image_track_0[index].loaded = true;
 }
 
 function loadedImage(index)
