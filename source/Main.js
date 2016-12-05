@@ -245,7 +245,7 @@ function drawStuff()
 	}
 	gl.clearColor(1, 1, 1, 1);
 	gl.colorMask(false, false, false, true);
-	gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.clear(gl.COLOR_BUFFER_BIT| gl.DEPTH_BUFFER_BIT);
 	
 }// End drawStuff
 
