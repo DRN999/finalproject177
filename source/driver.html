@@ -67,6 +67,7 @@
 		void main() 
 		{
 			gl_FragColor = texture2D(u_Texture, v_Texcoord);
+			gl_FragColor.rgb *= gl_FragColor.a;
 		}
 	</script>
 	
