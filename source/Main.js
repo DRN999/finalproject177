@@ -58,10 +58,10 @@ function updateKeyInfo()
 	
 	if (Key.isDown(Key.SPACE))
 	{		
-		scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = true;
+		//scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = true;
 		checkCollisionSpray();
 	}
-	else scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
+	else// scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
 	
 	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
 }// End updateKeyInfo
