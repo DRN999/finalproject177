@@ -14,8 +14,8 @@ var scene1 = new Scene(); // default screen
 
 var ITEM_KEY =
 {// object for taking care of the array number
-	PLAYER1: 4,
-	PLAYER2: 3,
+	PLAYER1: 3,
+	PLAYER2: 4,
 	FOOTHAIR: 2,
 	FOOT: 1,
 	TEXTURE: 0
