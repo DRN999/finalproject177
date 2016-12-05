@@ -99,7 +99,7 @@ function checkCollisionSpray()
 			var player = scene1.objects[ITEM_KEY.PLAYER2];
 			if
 			(
-				checkX <= player.x_orig + 300&&
+				checkX <= player.x_orig + 500&&
 				checkX >= player.x_orig + 25  &&
 				checkY <= player.y_orig + 25 &&
 				checkY >= player.y_orig - 25
