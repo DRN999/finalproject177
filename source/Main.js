@@ -10,13 +10,29 @@ function main()
 		console.log("failed to load context");
 		return -1;
 	}
+	
 	initTemp();
 	initInputMouse();
 	initInputKey();
-		
+	
+	var start = function()
+	{
+		if(check_loaded(image_track_0))
+		{
+			drawStuff();
+			updateMouseInfoMenu();
+		}
+		if(!press_start)
+			requestAnimationFrame(start, canvas);
+	}
+	start();
+	
+	scenes[0].drawing = false;
+	scenes[1].drawing = true;
+	
 	var tick = function()
 	{// animation tick
-		if(check_loaded())
+		if(check_loaded(image_track))
 		{
 			drawStuff();
 			updateKeyInfo();
@@ -32,11 +48,11 @@ function main()
 	
 }// End main
 
-function check_loaded()
+function check_loaded(tracker)
 {
-	for(var i = 0; i < image_track.length; i++)
+	for(var i = 0; i < tracker.length; i++)
 	{
-		if(!image_track[i].loaded)
+		if(!tracker[i].loaded)
 			return false;
 	}
 	return true;
@@ -52,51 +68,51 @@ function updateKeyInfo()
 {// updates the keyboard inputs
 	if (Key.isDown(Key.w)||Key.isDown(Key.W))
 	{
-		scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, 10);
-		scene1.objects[ITEM_KEY.CREAM].shift_character(0,10);
+		scenes[1].objects[ITEM_KEY.PLAYER2].shift_character(0, 10);
+		scenes[1].objects[ITEM_KEY.CREAM].shift_character(0,10);
 	}
 		
 	if (Key.isDown(Key.a)||Key.isDown(Key.A)) 
 	{
-		scene1.objects[ITEM_KEY.PLAYER2].shift_character(-10, 0);
-		scene1.objects[ITEM_KEY.CREAM].shift_character(-10, 0);
+		scenes[1].objects[ITEM_KEY.PLAYER2].shift_character(-10, 0);
+		scenes[1].objects[ITEM_KEY.CREAM].shift_character(-10, 0);
 	}
 		
 	if (Key.isDown(Key.s)||Key.isDown(Key.S)) 
 	{
-		scene1.objects[ITEM_KEY.PLAYER2].shift_character(0, -10);
-		scene1.objects[ITEM_KEY.CREAM].shift_character(0, -10);
+		scenes[1].objects[ITEM_KEY.PLAYER2].shift_character(0, -10);
+		scenes[1].objects[ITEM_KEY.CREAM].shift_character(0, -10);
 	}
 		
 	if (Key.isDown(Key.d)||Key.isDown(Key.D)) 
 	{
-		scene1.objects[ITEM_KEY.PLAYER2].shift_character(10, 0);
-		scene1.objects[ITEM_KEY.CREAM].shift_character(10, 0);
+		scenes[1].objects[ITEM_KEY.PLAYER2].shift_character(10, 0);
+		scenes[1].objects[ITEM_KEY.CREAM].shift_character(10, 0);
 	}
 	
 	if (Key.isDown(Key.SPACE))
 	{		
-		scene1.objects[ITEM_KEY.CREAM].shapes[0].draw = true;
+		scenes[1].objects[ITEM_KEY.CREAM].shapes[0].draw = true;
 		checkCollisionSpray();
 	}
 	else
 	{
-		scene1.objects[ITEM_KEY.CREAM].shapes[0].draw = false;
+		scenes[1].objects[ITEM_KEY.CREAM].shapes[0].draw = false;
 	}
 	
-	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
-	scene1.objects[ITEM_KEY.CREAM].updateVertices();
+	scenes[1].objects[ITEM_KEY.PLAYER2].updateVertices();
+	scenes[1].objects[ITEM_KEY.CREAM].updateVertices();
 }// End updateKeyInfo
 
 function checkCollisionSpray()
 {// check if the spray collides with the hair
-	for(var j = 0; j < scene1.objects.length; j++)
+	for(var j = 0; j < scenes[1].objects.length; j++)
 	{
-		if( scene1.objects[j].name == 'hair')
+		if( scenes[1].objects[j].name == 'hair')
 		{
-			var checkX = scene1.objects[j].x_orig;
-			var checkY = scene1.objects[j].y_orig;
-			var player = scene1.objects[ITEM_KEY.PLAYER2];
+			var checkX = scenes[1].objects[j].x_orig;
+			var checkY = scenes[1].objects[j].y_orig;
+			var player = scenes[1].objects[ITEM_KEY.PLAYER2];
 			if
 			(
 				checkX <= player.x_orig + 350 &&
@@ -104,8 +120,8 @@ function checkCollisionSpray()
 				checkY <= player.y_orig + 0 &&
 				checkY >= player.y_orig - 50
 			){
-				scene1.objects[j].shapes[0].changeImage("Cream 2.png");
-				scene1.objects[j].name = "spray-hair";
+				scenes[1].objects[j].shapes[0].changeImage("Cream 2.png");
+				scenes[1].objects[j].name = "spray-hair";
 			}
 		}
 	}
@@ -113,28 +129,47 @@ function checkCollisionSpray()
 
 function updateMouseInfo()
 {// updates the mouse input
-	scene1.objects[ITEM_KEY.PLAYER1].change_character(Mouse.x, Mouse.y);
-	scene1.objects[ITEM_KEY.PLAYER1].updateVertices();
+	scenes[1].objects[ITEM_KEY.PLAYER1].change_character(Mouse.x, Mouse.y);
+	scenes[1].objects[ITEM_KEY.PLAYER1].updateVertices();
 	if(Mouse.isDown(Mouse.LEFT))
 	{
 		checkSprayedHair();
 	}
 	if(Mouse.isDown(Mouse.RIGHT))
 	{
-		if(scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length == 0){}
-			//initHair(scene1.objects[ITEM_KEY.FOOTHAIR]);
+		if(scenes[1].objects[ITEM_KEY.FOOTHAIR].shapes.length == 0){}
+			//initHair(scenes[1].objects[ITEM_KEY.FOOTHAIR]);
 	}
 }// End updateMouseInfo
 
+function updateMouseInfoMenu()
+{
+	if
+	(
+		Mouse.x > -300 && Mouse.x < 300 &&
+		Mouse.y > -100 && Mouse.y < 100 
+	){
+		scenes[0].objects[0].drawObject = false;
+		scenes[1].objects[1],drawObject = true;
+		if(Mouse.isDown(Mouse.LEFT))
+			press_start = true;
+	}
+	else
+	{
+		scenes[0].objects[0].drawObject = true;
+		scenes[1].objects[1],drawObject = false;
+	}
+}
+
 function checkSprayedHair()
 {// see if razor gets any sprayed hair
-	for(var j = 0; j < scene1.objects.length; j++)
+	for(var j = 0; j < scenes[1].objects.length; j++)
 	{
-		if(scene1.objects[j].name == "spray-hair" && scene1.objects[j].drawObject)
+		if(scenes[1].objects[j].name == "spray-hair" && scenes[1].objects[j].drawObject)
 		{
-			var checkX = scene1.objects[j].x_orig + scene1.objects[j].shapes[0].locX;
-			var checkY = scene1.objects[j].y_orig + scene1.objects[j].shapes[0].locY;
-			var player = scene1.objects[ITEM_KEY.PLAYER1];
+			var checkX = scenes[1].objects[j].x_orig + scenes[1].objects[j].shapes[0].locX;
+			var checkY = scenes[1].objects[j].y_orig + scenes[1].objects[j].shapes[0].locY;
+			var player = scenes[1].objects[ITEM_KEY.PLAYER1];
 			if
 			(
 				checkX <= player.x_orig + 40 &&
@@ -142,8 +177,8 @@ function checkSprayedHair()
 				checkY <= player.y_orig + 30 &&
 				checkY >= player.y_orig + 5
 			){
-				scene1.objects[j].remove(0);
-				scene1.objects[j].drawObject = false;
+				scenes[1].objects[j].remove(0);
+				scenes[1].objects[j].drawObject = false;
 			}
 		}
 	}
@@ -151,8 +186,30 @@ function checkSprayedHair()
 
 function initTemp()
 {// initializes the shapes
+	scenes[0].drawing = true;
+	scenes[1].drawing = false;
+	
 	var neg = ITEM_KEY.PLAYER1 == 0 ? 1 : -1;
 	Mouse.x = neg == -1 ? 300 : 0;
+	
+	
+	var c = new Character(0, 0);
+	var lel = new ImageShape(0, 0, 600, 200, "Play.png", 0);
+	image_track_0.push(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	c.addShape(lel);
+	scenes[0].addObject(c); 
+	
+	c = new Character(0, 0);
+	var lel = new ImageShape(0, 0, 600, 200, "Play_select.png", 1);
+	image_track_0.push(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	c.drawObject = false;
+	c.addShape(lel);
+	scenes[0].addObject(c); 
+	
 	
 	//extra
 	/*
@@ -169,7 +226,7 @@ function initTemp()
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	c.change_all_color(0, 0, 1, 1);
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	*/
 	
 	// leg
@@ -182,17 +239,18 @@ function initTemp()
 	lel.change_color(1, 0.5, 0, 1);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	*/
 	
 	var c = new Character(0, 0);
 	var lel = new ImageShape(0, 0, 450, 720, "Leg.png", image_index++);
 	image_track.push(lel);
-	
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	c.addShape(lel);
-	scene1.addObject(c);
+	scenes[1].addObject(c);
+	ITEM_KEY.FOOT = image_index - 1;
+	
 	
 	//hair
 	initHair();
@@ -201,11 +259,10 @@ function initTemp()
 	c = new Character(300 * neg, 0);
 	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", image_index++);
 	image_track.push(lel);
-	
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	c.addShape(lel);
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	ITEM_KEY.PLAYER1 = image_index - 1;
 	
 	//p1
@@ -217,7 +274,7 @@ function initTemp()
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	c.addShape(lel);
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	ITEM_KEY.PLAYER2 = image_index - 1;
 	
 	//cream
@@ -228,7 +285,7 @@ function initTemp()
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	c.addShape(lel);
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	ITEM_KEY.CREAM = image_index - 1;
 	
 	/*
@@ -244,7 +301,7 @@ function initTemp()
 	lel.draw = false;
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
-	scene1.addObject(c);
+	scenes[1].addObject(c);
 	*/
 	
 	
@@ -271,10 +328,11 @@ function initHair(c)
 		c.drawProgram = 1;
 		c.name = "hair";
 		c.drawFormat = "TRIANGLES";
-		scene1.addObject(c);
+		scenes[1].addObject(c);
 	}
 	
 }
+
 
 function drawStuff()
 {//draws the shapes
@@ -288,28 +346,34 @@ function drawStuff()
 	var indices = new Array();
 	var colors = new Array();
 	var tex = new Array();
-	var n = 0;
-	for(var i = 0; i < scene1.objects.length; i++)
+	var num = 0;
+	for(var n = 0; n < scenes.length; n++)
 	{
-		if(scene1.objects[i].drawObject)
+		if(scenes[n].drawing)
 		{
-			if(scene1.objects[i].drawProgram == 0)
+			for(var i = 0; i < scenes[n].objects.length; i++)
 			{
-				vertices = scene1.objects[i].concat_vertices();
-				indices = scene1.objects[i].concat_indices();
-				colors  = scene1.objects[i].concat_colors();
-				n = initVertexBuffers(gl, vertices, indices, colors);
+				if(scenes[n].objects[i].drawObject)
+				{
+					if(scenes[n].objects[i].drawProgram == 0)
+					{
+						vertices = scenes[n].objects[i].concat_vertices();
+						indices = scenes[n].objects[i].concat_indices();
+						colors  = scenes[n].objects[i].concat_colors();
+						num = initVertexBuffers(gl, vertices, indices, colors);
+					}
+					else
+					{
+						vertices = scenes[n].objects[i].concat_vertices();
+						indices = scenes[n].objects[i].concat_indices();
+						tex = scenes[n].objects[i].get_tex();
+						num = initVertexBuffersTexture(gl, vertices, tex, indices, scenes[n].objects[i].shapes[0].texture, scenes[n].objects[i].shapes[0].index);
+					}
+					gl.drawElements(DRAW_KEY.get(scenes[n].objects[i].drawFormat), num , gl.UNSIGNED_SHORT, 0); 
+				}		
+				
 			}
-			else
-			{
-				vertices = scene1.objects[i].concat_vertices();
-				indices = scene1.objects[i].concat_indices();
-				tex = scene1.objects[i].get_tex();
-				n = initVertexBuffersTexture(gl, vertices, tex, indices, scene1.objects[i].shapes[0].texture, scene1.objects[i].shapes[0].index);
-			}
-			gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 
-		}		
-		
+		}
 	}
 	//gl.clearColor(1, 1, 1, 1);
 	//gl.colorMask(false, false, false, true);

@@ -9,6 +9,7 @@ function Scene(obj)
 		this.objects = obj;
 	}
 	this.count = this.objects.length;
+	this.drawing = false;
 }
 
 Scene.prototype.addObject = function(obj)

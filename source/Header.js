@@ -6,11 +6,15 @@ var FSHADER_SOURCE_TEXTURE = document.getElementById("fragment-shader-texture").
 var canvas = document.getElementById('webgl'); // canvas
 var gl = WebGLUtils.setupWebGL(canvas,{preserveDrawingBuffer: true}, {premultipliedAlpha: false},{alpha: false});
 var image_track = new Array();
+var image_track_0 = new Array();
 var default_program;
 var tex_program;
 var CANVAS_HEIGHT = 720;
 var CANVAS_WIDTH = 1280;
+var press_start = false;
+var scene0 = new Scene();
 var scene1 = new Scene(); // default screen
+var scenes = [scene0, scene1];
 var image_index = 0;
 
 
