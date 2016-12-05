@@ -77,10 +77,10 @@ function checkCollisionSpray()
 			var player = scene1.objects[ITEM_KEY.PLAYER2];
 			if
 			(
-				checkX <= player.x_orig + player.shapes[3].locX + player.shapes[3].width/2 &&
-				checkX >= player.x_orig + player.shapes[3].locX - player.shapes[3].width/2 &&
-				checkY <= player.y_orig + player.shapes[3].locY + player.shapes[3].height/2 &&
-				checkY >= player.y_orig + player.shapes[3].locY - player.shapes[3].height/2
+				checkX <= player.x_orig + 300&&
+				checkX >= player.x_orig  &&
+				checkY <= player.y_orig + 150 &&
+				checkY >= player.y_orig
 			){
 				scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].change_color(1, 1, 1, 1);
 				scene1.objects[ITEM_KEY.FOOTHAIR].shapes[j].name = "spray-hair";
