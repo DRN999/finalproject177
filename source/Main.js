@@ -243,9 +243,9 @@ function drawStuff()
 		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
 		
 	}
-	gl.clearColor(1, 1, 1, 1);
-	gl.colorMask(false, false, false, true);
-	gl.clear(gl.COLOR_BUFFER_BIT| gl.DEPTH_BUFFER_BIT);
+	//gl.clearColor(1, 1, 1, 1);
+	//gl.colorMask(false, false, false, true);
+	//gl.clear(gl.COLOR_BUFFER_BIT| gl.DEPTH_BUFFER_BIT);
 	
 }// End drawStuff
 
