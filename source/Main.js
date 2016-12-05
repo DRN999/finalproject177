@@ -216,7 +216,8 @@ function drawStuff()
 	gl.clearColor(1,1,1,1);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.colorMask(true, true, true, false);
-	gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+	gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+	//gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 	gl.enable(gl.BLEND);
 	gl.enable(gl.DEPTH_TEST);
 	var vertices = new Array();
