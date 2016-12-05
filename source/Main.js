@@ -150,14 +150,14 @@ function updateMouseInfoMenu()
 		Mouse.y > -100 && Mouse.y < 100 
 	){
 		scenes[0].objects[0].drawObject = false;
-		scenes[1].objects[1],drawObject = true;
+		scenes[1].objects[1].drawObject = true;
 		if(Mouse.isDown(Mouse.LEFT))
 			press_start = true;
 	}
 	else
 	{
 		scenes[0].objects[0].drawObject = true;
-		scenes[1].objects[1],drawObject = false;
+		scenes[1].objects[1].drawObject = false;
 	}
 }
 
