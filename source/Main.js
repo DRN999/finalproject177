@@ -168,7 +168,7 @@ function initTemp()
 	
 	//p2
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 300, "../resources/Crab claw Blue 2.png", 0);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/Razor Pink in claws.png", 0);
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
@@ -176,6 +176,15 @@ function initTemp()
 	scene1.addObject(c);
 	
 	//p1
+	c = new Character(300 * neg, 0);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/Shaving Cream in claws.png", 0);
+	lel.flipTextureHori();
+	image_track.push(lel);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	scene1.addObject(c);
+	/*
 	var c = new Character(300 * neg, 0);
 	var lel = new Square(25, 50, 100, 25);
 	c.addShape(lel);
@@ -189,6 +198,7 @@ function initTemp()
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
+	*/
 	
 	
 }// End initTemp

@@ -40,6 +40,39 @@ ImageShape.prototype = Object.create(Square.prototype);
 
 ImageShape.prototype.constructor = ImageShape;
 
+ImageShape.prototype.flipTextureVert() = function()
+{
+	var tex1 = [this.tex_coord[0],this.tex_coord[1]];
+	var tex2 = [this.tex_coord[2],this.tex_coord[3]];
+	var tex3 = [this.tex_coord[4],this.tex_coord[5]];
+	var tex4 = [this.tex_coord[6],this.tex_coord[7]];
+	this.tex_coord[0] = tex2[0];
+	this.tex_coord[1] = tex2[1];
+	this.tex_coord[2] = tex1[0];
+	this.tex_coord[3] = tex1[1];
+	this.tex_coord[4] = tex4[0];
+	this.tex_coord[5] = tex4[1];
+	this.tex_coord[6] = tex3[0];
+	this.tex_coord[7] = tex3[1];
+}
+
+ImageShape.prototype.flipTextureHori() = function()
+{
+	var tex1 = [this.tex_coord[0],this.tex_coord[1]];
+	var tex2 = [this.tex_coord[2],this.tex_coord[3]];
+	var tex3 = [this.tex_coord[4],this.tex_coord[5]];
+	var tex4 = [this.tex_coord[6],this.tex_coord[7]];
+	this.tex_coord[0] = tex3[0];
+	this.tex_coord[1] = tex3[1];
+	this.tex_coord[2] = tex4[0];
+	this.tex_coord[3] = tex4[1];
+	this.tex_coord[4] = tex1[0];
+	this.tex_coord[5] = tex1[1];
+	this.tex_coord[6] = tex2[0];
+	this.tex_coord[7] = tex2[1];
+}
+
+
 function isPowerOf2(value) 
 {
 	return (value & (value - 1)) == 0;
