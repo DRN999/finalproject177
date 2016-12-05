@@ -177,7 +177,7 @@ function initTemp()
 	
 	//p1
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 300, "../resources/Shaving Cream in claws.png", 0);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/Shaving Cream in claws.png", 1);
 	lel.flipTextureHori();
 	image_track.push(lel);
 	c.addShape(lel);
