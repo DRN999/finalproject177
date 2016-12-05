@@ -297,8 +297,6 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 	var index_buffer = gl.createBuffer();
 	var texture_buffer = gl.createBuffer();
 	var u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
-	var u_Alpha = gl.getUniformLocation(gl.program, 'u_Alpha');
-	gl.uniform1f(u_Alpha, 1.0);
 	mvpMatrix.setOrtho
 	(
 		-640, 640,

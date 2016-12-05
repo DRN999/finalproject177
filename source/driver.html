@@ -63,11 +63,10 @@
 	<script id="fragment-shader-texture" type="x-shader/x-fragment">
 		precision mediump float;
 		varying vec2 v_Texcoord;
-		uniform sampler2D u_Texture;
-		uniform float u_Alpha;
+		uniform sampler2D u_Texture;;
 		void main() 
 		{
-			gl_FragColor = vec4(texture2D(u_Texture, v_Texcoord).rgb, texture2D(u_Texture, v_Texcoord).a * u_Alpha);
+			gl_FragColor = texture2D(u_Texture, v_Texcoord);
 		}
 	</script>
 	
