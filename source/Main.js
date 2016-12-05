@@ -61,7 +61,7 @@ function updateKeyInfo()
 		//scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = true;
 		checkCollisionSpray();
 	}
-	else// scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
+	else{}// scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
 	
 	scene1.objects[ITEM_KEY.PLAYER2].updateVertices();
 }// End updateKeyInfo
@@ -132,6 +132,7 @@ function initTemp()
 	Mouse.x = neg == -1 ? 300 : 0;
 	
 	//extra
+	/*
 	c = new Character(300, 0);
 	lel = new Square(0, 50, 200, 35);
 	c.addShape(lel);
@@ -146,7 +147,7 @@ function initTemp()
 	c.drawFormat = "TRIANGLES";
 	c.change_all_color(0, 0, 1, 1);
 	scene1.addObject(c);
-	
+	*/
 	
 	// leg
 	c = new Character(0, 0);
@@ -167,7 +168,7 @@ function initTemp()
 	
 	//p2
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "../resources/Razor Pink in claws.png", 0);
+	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", 0);
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
@@ -176,7 +177,7 @@ function initTemp()
 	
 	//p1
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "../resources/Shaving Cream in claws.png", 1);
+	lel = new ImageShape(0, 0, 300, 600, "Shaving Cream in claws.png", 1);
 	lel.flipTextureHori();
 	image_track.push(lel);
 	c.addShape(lel);
@@ -326,8 +327,11 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture, ind
 		return -1;
 	}
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
-	gl.activeTexture(gl.TEXTURE0 + index);
+	
+	//gl.activeTexture(gl.TEXTURE0 + index);
 	gl.bindTexture(gl.TEXTURE_2D, texture);
+	var u_Texture = gl.getUniformLocation(gl.program, "u_Texture");
+	gl.uniform1i(u_Texture, 0);
 	init_array_buffer(vertex_buffer, 3, "a_Position", f_vertices, gl.program);
 	init_array_buffer(texture_buffer, 2, "a_Texcoord", f_tex_coord, gl.program);
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer);

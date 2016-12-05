@@ -1,7 +1,26 @@
 
 function ImageShape(x, y, w, h, url, index)
 {
-	Square.call(this, x, y, w, h);
+	Shape.call(this, x, y);
+	this.width = w;
+	this.height = h;
+	
+    this.vertices = 
+	[
+		x - w/2, y + h/2, 0,
+		x - w/2, y - h/2, 0,
+		x + w/2, y + h/2, 0,
+		x + w/2, y - h/2, 0
+	]
+	
+	this.indices = 
+	[
+		0, 1, 2, 
+		1, 3, 2
+	]
+	
+	this.indices_max = 3;
+	
 	this.url = url;
 	var tex = gl.createTexture();
 	this.texture = tex;
@@ -17,12 +36,7 @@ function ImageShape(x, y, w, h, url, index)
 		handleTextureLoaded(img, tex);
 		
 		loadedImage(index);
-		gl.activeTexture(gl.TEXTURE0 + index);
 		gl.bindTexture(gl.TEXTURE_2D, tex);
-		gl.useProgram(tex_program);
-		gl.program = tex_program;
-		var u_Texture = gl.getUniformLocation(gl.program, "u_Texture");
-		gl.uniform1i(u_Texture, 0);
 	}
 	this.image.crossOrigin = "";
 	this.image.src = url;
@@ -36,7 +50,7 @@ function ImageShape(x, y, w, h, url, index)
 	this.name = "image";
 }
 
-ImageShape.prototype = Object.create(Square.prototype);
+ImageShape.prototype = Object.create(Shape.prototype);
 
 ImageShape.prototype.constructor = ImageShape;
 
@@ -95,6 +109,18 @@ function handleTextureLoaded(image, texture)
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
 	}		
 }
+
+ImageShape.prototype.updateVertices = function(x, y)
+{
+	this.vertices =
+	[
+		x + this.locX - this.width/2, y + this.locY + this.height/2, 0,
+		x + this.locX - this.width/2, y + this.locY - this.height/2, 0,
+		x + this.locX + this.width/2, y + this.locY + this.height/2, 0,
+		x + this.locX + this.width/2, y + this.locY - this.height/2, 0
+	];
+}
+
 function loadedImage(index)
 {
 	image_track[index].loaded = true;
