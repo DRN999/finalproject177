@@ -249,7 +249,7 @@ function drawStuff()
 			vertices = scene1.objects[i].concat_vertices();
 			indices = scene1.objects[i].concat_indices();
 			tex = scene1.objects[i].shapes[0].tex_coord;
-			n = initVertexBuffersTexture(gl, vertices, tex, indices, scene1.objects[i].shapes[0].texture);
+			n = initVertexBuffersTexture(gl, vertices, tex, indices, scene1.objects[i].shapes[0].texture, scene1.objects[i].shapes[0].index);
 		}
 		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
 		
@@ -298,7 +298,7 @@ function initVertexBuffers(gl, vertices, indices, colors)
 	
 }// End initVertexBuffers
 
-function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
+function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture, index)
 {
 	
 	gl.useProgram(tex_program);
@@ -325,7 +325,7 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture)
 		return -1;
 	}
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
-	
+	gl.activeTexture(gl.TEXTURE0 + index);
 	gl.bindTexture(gl.TEXTURE_2D, texture);
 	init_array_buffer(vertex_buffer, 3, "a_Position", f_vertices, gl.program);
 	init_array_buffer(texture_buffer, 2, "a_Texcoord", f_tex_coord, gl.program);
