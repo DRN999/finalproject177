@@ -89,9 +89,14 @@ function moveFoot()
 {
 	for(var j = 0; j < scenes[1].objects.length; j++)
 	{
-		if( scenes[1].objects[j].name == 'hair' || scenes[1].objects[j].name == 'leg' )
-		{
-			scenes[1].objects[j].shapes[0].shift_character(2, 0);
+		if
+		(
+		scenes[1].objects[j].name == 'hair' ||
+		scenes[1].objects[j].name == 'leg' ||  
+		scenes[1].objects[j].name == 'spray-hair' 
+		){
+			scenes[1].objects[j].shift_character(2, 0);
+			scenes[1].objects[j].updateVertices();
 		}
 	}
 }
