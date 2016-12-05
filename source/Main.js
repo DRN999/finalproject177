@@ -326,7 +326,7 @@ function initVertexBuffersTexture(gl, vertices, tex_coord, indices, texture, ind
 		return -1;
 	}
 	gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
-	//gl.activeTexture(gl.TEXTURE0 + index);
+	gl.activeTexture(gl.TEXTURE0 + index);
 	gl.bindTexture(gl.TEXTURE_2D, texture);
 	init_array_buffer(vertex_buffer, 3, "a_Position", f_vertices, gl.program);
 	init_array_buffer(texture_buffer, 2, "a_Texcoord", f_tex_coord, gl.program);
