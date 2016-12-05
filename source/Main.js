@@ -15,10 +15,12 @@ function main()
 	initInputMouse();
 	initInputKey();
 	
+	console.log(image_track_0);
 	var start = function()
 	{
 		if(check_loaded(image_track_0))
 		{
+			console.log("called");
 			drawStuff();
 			updateMouseInfoMenu();
 		}
