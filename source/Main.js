@@ -215,6 +215,7 @@ function drawStuff()
 {//draws the shapes
 	gl.clearColor(1,1,1,1);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+	gl.colorMask(true, true, true, false);
 	gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 	gl.enable(gl.BLEND);
 	gl.enable(gl.DEPTH_TEST);
@@ -242,6 +243,9 @@ function drawStuff()
 		gl.drawElements(DRAW_KEY.get(scene1.objects[i].drawFormat), n , gl.UNSIGNED_SHORT, 0); 	
 		
 	}
+	gl.clearColor(1, 1, 1, 1);
+	gl.colorMask(false, false, false, true);
+	gl.clear(gl.COLOR_BUFFER_BIT);
 	
 }// End drawStuff
 
