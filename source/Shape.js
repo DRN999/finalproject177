@@ -5,7 +5,6 @@ function Shape(x, y)
 {
 	this.locX = x;
 	this.locY = y;
-	this.draw = true;
 	this.name = "shape";
 	this.vertices = new Array();
 	this.indices = new Array();

@@ -11,13 +11,16 @@ var tex_program;
 var CANVAS_HEIGHT = 720;
 var CANVAS_WIDTH = 1280;
 var scene1 = new Scene(); // default screen
+var image_index = 0;
+
 
 var ITEM_KEY =
 {// object for taking care of the array number
+	FOOT: 0,
+	FOOTHAIR: 1,
 	PLAYER1: 2,
 	PLAYER2: 3,
-	FOOTHAIR: 1,
-	FOOT: 0
+	CREAM: 4
 };
 
 var DRAW_KEY = new Map();

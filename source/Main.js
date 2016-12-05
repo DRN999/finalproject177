@@ -34,7 +34,6 @@ function main()
 
 function check_loaded()
 {
-
 	for(var i = 0; i < image_track.length; i++)
 	{
 		if(!image_track[i].loaded)
@@ -59,7 +58,7 @@ function updateKeyInfo()
 	if (Key.isDown(Key.SPACE))
 	{		
 		//scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = true;
-		checkCollisionSpray();
+		//checkCollisionSpray();
 	}
 	else{}// scene1.objects[ITEM_KEY.PLAYER2].shapes[3].draw = false;
 	
@@ -95,12 +94,12 @@ function updateMouseInfo()
 	scene1.objects[ITEM_KEY.PLAYER1].updateVertices();
 	if(Mouse.isDown(Mouse.LEFT))
 	{
-		checkSprayedHair();
+		//checkSprayedHair();
 	}
 	if(Mouse.isDown(Mouse.RIGHT))
 	{
-		if(scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length == 0)
-			initHair(scene1.objects[ITEM_KEY.FOOTHAIR]);
+		if(scene1.objects[ITEM_KEY.FOOTHAIR].shapes.length == 0){}
+			//initHair(scene1.objects[ITEM_KEY.FOOTHAIR]);
 	}
 }// End updateMouseInfo
 
@@ -150,6 +149,7 @@ function initTemp()
 	*/
 	
 	// leg
+	/*
 	c = new Character(0, 0);
 	lel = new Square(0, 0, 100, 350);
 	lel.change_color(1, 0.5, 0, 1);
@@ -159,32 +159,50 @@ function initTemp()
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	scene1.addObject(c);
+	*/
 	
-	//hair
-	c = new Character(0,0);
-	initHair(c);
-	c.drawFormat = "TRIANGLES";
-	scene1.addObject(c);
-	
-	//p2
-	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", 0);
+	var c = new Character(0, 0);
+	var lel = new ImageShape(0, 0, 450, 720, "Leg.png", image_index++);
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	scene1.addObject(c);
 	
+	//hair
+	initHair();
+	
+	//p2
+	c = new Character(300 * neg, 0);
+	lel = new ImageShape(0, 0, 300, 600, "Razor Pink in claws.png", image_index++);
+	image_track.push(lel);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	scene1.addObject(c);
+	ITEM_KEY.PLAYER1 = image_index - 1;
+	
 	//p1
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "Shaving Cream in claws.png", 1);
+	lel = new ImageShape(0, 0, 300, 600, "Shaving Cream in claws.png", image_index++);
 	lel.flipTextureHori();
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
 	c.drawProgram = 1;
 	scene1.addObject(c);
+	ITEM_KEY.PLAYER2 = image_index - 1;
 	
+	//cream
+	
+	c = new Character(300 * neg + 250, 58);
+	lel = new ImageShape(0, 0, 600, 300, "Cream 1.png", image_index++);
+	image_track.push(lel);
+	c.addShape(lel);
+	c.drawFormat = "TRIANGLES";
+	c.drawProgram = 1;
+	scene1.addObject(c);
+	ITEM_KEY.CREAM = image_index - 1;
 	
 	/*
 	var c = new Character(300 * neg, 0);
@@ -211,16 +229,22 @@ function initHair(c)
 	var rand = Math.floor((Math.random() * 30) + 15);
 	for(var i = 0; i < rand; i++)
 	{
-		var lel = new Square
+		var c = new Character((Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 40) + 0)), 
+			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 200) + 0)));
+		var lel = new ImageShape
 		(
-			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 45) + 0)), 
-			(Math.random() < 0.5 ? -1 : 1) * (Math.floor((Math.random() * 150) + 0)), 
-			10, 10
+			-50, 100,
+			200, 200, 
+			"Hair " + Math.floor((Math.random() * 6) + 1) + ".png", 
+			image_index++
 		);
+		image_track.push(lel);
 		lel.name = "hair";
 		c.addShape(lel);
+		c.drawProgram = 1;
+		c.drawFormat = "TRIANGLES";
+		scene1.addObject(c);
 	}
-	c.change_all_color(0, 0, 0, 1);
 	
 }
 

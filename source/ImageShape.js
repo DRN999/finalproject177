@@ -34,9 +34,7 @@ function ImageShape(x, y, w, h, url, index)
 		console.log(tex);
 		console.log(img);
 		handleTextureLoaded(img, tex);
-		
 		loadedImage(index);
-		gl.bindTexture(gl.TEXTURE_2D, tex);
 	}
 	this.image.crossOrigin = "";
 	this.image.src = url;
