@@ -215,8 +215,7 @@ function drawStuff()
 {//draws the shapes
 	gl.enable(gl.BLEND);
 	gl.enable(gl.DEPTH_TEST);
-	gl.colorMask(false, false, false, true);
-	gl.clearColor(0, 0, 0, 1);
+	gl.clearColor(1, 1, 1, 1);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 	gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 	
