@@ -99,10 +99,10 @@ function checkCollisionSpray()
 			var player = scene1.objects[ITEM_KEY.PLAYER2];
 			if
 			(
-				checkX <= player.x_orig + 500&&
+				checkX <= player.x_orig + 350 &&
 				checkX >= player.x_orig + 25  &&
-				checkY <= player.y_orig + 25 &&
-				checkY >= player.y_orig - 25
+				checkY <= player.y_orig + 0 &&
+				checkY >= player.y_orig - 50
 			){
 				scene1.objects[j].shapes[0].changeImage("Cream 2.png");
 				scene1.objects[j].name = "spray-hair";
