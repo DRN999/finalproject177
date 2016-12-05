@@ -14,11 +14,11 @@ var scene1 = new Scene(); // default screen
 
 var ITEM_KEY =
 {// object for taking care of the array number
-	PLAYER1: 1,
-	PLAYER2: 0,
+	PLAYER1: 4,
+	PLAYER2: 3,
 	FOOTHAIR: 2,
-	FOOT: 3,
-	TEXTURE: 4
+	FOOT: 1,
+	TEXTURE: 0
 };
 
 var DRAW_KEY = new Map();
