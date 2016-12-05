@@ -167,7 +167,7 @@ function initTemp()
 	
 	//p1
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "../resources/Shaving Cream in claws.png", 1);
+	lel = new ImageShape(0, 0, 300, 600, "../resources/Shaving Cream in claws.png", 0);
 	lel.flipTextureHori();
 	image_track.push(lel);
 	c.addShape(lel);
@@ -177,7 +177,7 @@ function initTemp()
 	
 	//p2
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 600, "../resources/Razor Pink in claws.png", 0);
+	lel = new ImageShape(0, 0, 300, 600, "../resources/Razor Pink in claws.png", 1);
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
