@@ -30,7 +30,6 @@ function Square(x, y, w, h)
 		1, 0, 0, 1
 	]
 	
-	this.name = "square";
 }
 
 Square.prototype = Object.create(Shape.prototype);

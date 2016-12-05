@@ -30,9 +30,6 @@ function ImageShape(x, y, w, h, url, index)
 	this.index = index;
 	this.image.onload = function()
 	{
-		console.log("loaded");
-		console.log(tex);
-		console.log(img);
 		handleTextureLoaded(img, tex);
 		loadedImage(index);
 	}
@@ -45,12 +42,30 @@ function ImageShape(x, y, w, h, url, index)
 		1, 0,
 		1, 1
 	];
-	this.name = "image";
 }
 
 ImageShape.prototype = Object.create(Shape.prototype);
 
 ImageShape.prototype.constructor = ImageShape;
+
+ImageShape.prototype.changeImage = function(url)
+{
+	this.url = url;
+	var tex = gl.createTexture();
+	this.texture = tex;
+	var img = new Image();
+	this.image = img;
+	this.loaded = false;
+	var index = this.index;
+	this.image.onload = function()
+	{
+		handleTextureLoaded(img, tex);
+		loadedImage(index);
+	}
+	this.image.crossOrigin = "";
+	this.image.src = url;
+}
+
 
 ImageShape.prototype.flipTextureVert = function()
 {

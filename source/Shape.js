@@ -5,11 +5,11 @@ function Shape(x, y)
 {
 	this.locX = x;
 	this.locY = y;
-	this.name = "shape";
 	this.vertices = new Array();
 	this.indices = new Array();
 	this.colors = new Array();
 	this.indices_max = 0;
+	this.draw = true;
 }
 
 Shape.prototype.retX = function()

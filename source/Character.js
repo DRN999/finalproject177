@@ -11,6 +11,7 @@ function Character(x, y)
 	this.drawFormat = "";
 	this.drawProgram = 0;
 	this.drawObject = true;
+	this.name = "character";
 }
 
 Character.prototype.addShape = function(obj)
@@ -93,6 +94,17 @@ Character.prototype.concat_colors = function()
 	{
 		if(this.shapes[i].draw)
 			temp = temp.concat(this.shapes[i].colors);
+	}
+	return temp;
+}
+
+Character.prototype.get_tex = function()
+{
+	var temp = new Array();
+	for(var i = 0; i < this.shapes.length; i++)
+	{
+		if(this.shapes[i].draw)
+			temp = temp.concat(this.shapes[i].tex_coord);
 	}
 	return temp;
 }
