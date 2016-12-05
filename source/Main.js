@@ -168,7 +168,7 @@ function initTemp()
 	
 	//p2
 	c = new Character(300 * neg, 0);
-	lel = new ImageShape(0, 0, 300, 300, "../resources/transparenttest.png", 0);
+	lel = new ImageShape(0, 0, 300, 300, "../resources/blue.png", 0);
 	image_track.push(lel);
 	c.addShape(lel);
 	c.drawFormat = "TRIANGLES";
